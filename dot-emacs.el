@@ -45,6 +45,7 @@
 (require 'defaults)
 (require 'blogmax)
 (require 'git)
+(require 'vc)
 (require 'vc-git)
 (require 'git-blame)
 (require 'xcscope)
@@ -115,6 +116,11 @@
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+
 
 ;==============================================================================
 ;
@@ -129,7 +135,9 @@
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
- '(package-selected-packages (quote (rust-mode adoc-mode markdown-mode)))
+ '(package-selected-packages
+   (quote
+    (imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
  '(safe-local-variable-values
    (quote
     ((c-indent-level . 8)
