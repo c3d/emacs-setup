@@ -57,6 +57,7 @@
 (require 'clang-format)
 (load "~/.emacs-lisp/haskell-mode-2.4/haskell-site-file")
 (load "~/.emacs-lisp/mu4e-setup.el")
+(load "~/.emacs-lisp/mu4e-jump-to-list.el")
 
 ;;(set-background-color "Wheat")
 (set-background-color "#E0E0FE")
