@@ -31,8 +31,8 @@
 (defun setenv-compiled ()
   (interactive)
   (setenv "BUILDENV" "macosx-clang")
-  (setenv "PATH" (concat "/opt/local/bin:" (getenv "PATH") ":/usr/local/bin"))
-  (setenv "PKG_CONFIG_PATH" "//usr/local/opt/jpeg-turbo/lib/pkgconfig:/usr/local/Cellar/openssl/1.0.2l/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/local/lib/pkgconfig"))
+  (setenv "PATH" (concat "/opt/local/bin:" (getenv "PATH") ":/usr/local/bin:/usr/local/opt/qt/bin"))
+  (setenv "PKG_CONFIG_PATH" "/usr/local/share/pkgconfig:/usr/local/lib/pkgconfig"))
 (setenv-compiled)
 
 (require 'cdefs)
