@@ -4,6 +4,8 @@
 ;
 ;==============================================================================
 
+(setq load-path (append '("~/Work/mu/mu4e") load-path))
+
 (require 'mu4e)
 (require 'mu4e-actions)
 (setq mu4e-maildir "~/Maildir/")
@@ -65,8 +67,8 @@
   '("Patch" . mu4e-action-git-apply-mbox) t)
 
 
-;; fetch mail every 5 minutes
-(setq mu4e-update-interval 300)
+;; fetch mail every hour
+(setq mu4e-update-interval 3600)
 
 ;; No stinking duplicates
 (setq mu4e-headers-skip-duplicates t)
@@ -127,19 +129,34 @@
 
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
-    :name  "spice"
-    :query "list:spice.*"
-    :key ?s))
+    :name  "kvm"
+    :query "list:kvm*"
+    :key ?k))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
-    :name  "kvm"
-    :query "list:kvm.*"
-    :key ?k))
+    :name  "qemu"
+    :query "list:qemu*"
+    :key ?q))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
     :name  "Flagged"
     :query "flag:flagged"
     :key ?f))
+(add-to-list 'mu4e-bookmarks
+  (make-mu4e-bookmark
+    :name  "virt"
+    :query "list:virt*"
+    :key ?v))
+(add-to-list 'mu4e-bookmarks
+  (make-mu4e-bookmark
+    :name  "all virt"
+    :query "list:virt* OR list:qemu* OR list:kvm*"
+    :key ?V))
+(add-to-list 'mu4e-bookmarks
+  (make-mu4e-bookmark
+    :name  "spice"
+    :query "list:spice*"
+    :key ?s))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
     :name  "Just me"
