@@ -57,7 +57,7 @@
 ;;             4 - Make and upload index only.
 ;; 010606 wws  Test on Linux in Emacs 20.4.1.
 ;;             Add missing </td> in calendar.
-;; 010605 wws  First release 
+;; 010605 wws  First release
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -256,9 +256,9 @@
     ("\221" "'")
     ("\205" "...")
     ("\240" "")
-    ("²" "&lt;")
-    ("³" "&gt;")
-    ("Ê" "&nbsp;")
+    ("Â²" "&lt;")
+    ("Â³" "&gt;")
+    ("ÃŠ" "&nbsp;")
     ("" "{tt \"")
     ("" "\"}")
     ))
@@ -290,7 +290,7 @@
     ("email" *weblog-email*)
     ("url" *weblog-url*)
     ("ftp-directory" *weblog-ftp-directory*)
-    ("index-days" *weblog-index-days* 
+    ("index-days" *weblog-index-days*
      (lambda (x) (car (read-from-string x))) integerp)
     ("shortcuts-file" *weblog-shortcuts-file*)
     ("month-index" *weblog-generate-month-index-p*
@@ -409,7 +409,7 @@ or by loading *weblog-shortcuts=file* from *weblog-directory*."
   (let ((elt (assoc *weblog-directory* *weblog-shortcuts-alist*)))
     (if elt
         (setq *weblog-shortcuts* (cdr elt))
-      (weblog-load-shortcuts))))  
+      (weblog-load-shortcuts))))
 
 ;; Load the *weblog-shortcuts-file* and put the result in *weblog-shortcuts*
 (defun weblog-load-shortcuts ()
@@ -454,7 +454,7 @@ File defaults to *weblog-shortcuts-file*"
        (if (eql 0 cnt) (return))))
     (weblog-add-paragraphs)
     (unless leave-escapes (weblog-remove-escapes))))
-  
+
 (defun search-forward-non-escaped (string &optional limit)
   (loop
    (let  ((pos (search-forward string limit t)))
@@ -620,7 +620,7 @@ using the *weblog-page-template-file*."
           (setq *weblog-content-template-file* *weblog-story-template-file*))
         (let* ((content (weblog-buffer-contents))
                (ext (file-name-extension file-name))
-               (ext-len (if (null ext) 
+               (ext-len (if (null ext)
                             (progn (setq file-name (concat file-name ".")) 0)
                           (length ext)))
                (html-file (concat
@@ -651,7 +651,7 @@ of the *weblog-story-file* or one of its parents."
 If it existed already return true. Otherwise, return false."
   (or (let ((buf (find-buffer-visiting file)))
         (when buf (set-buffer buf) t))
-      (progn (find-file file) 
+      (progn (find-file file)
              nil)))
 
 (defun weblog-upload (&optional dont-upload-source file-name)
@@ -994,7 +994,7 @@ Upload it to the FTP server."
              (time-string (concat (weblog-rss-format-time time t)
                                   " GMT"))
              ;(pub-time-string (concat (weblog-rss-format-time pub-time t)
-             ;                         " GMT"))                            
+             ;                         " GMT"))
              (html-buf (create-file-buffer text-file)))
         (set-buffer rss-buf)
         (erase-buffer)
@@ -1196,7 +1196,7 @@ Upload it to the FTP server."
               (princ "<td>")
               (let ((column-day (mod (+ i start-day) 7)))
                 (weblog-princ-dayname (calendar-day-name column-day 3 t)))
-              (princ "</td>\n"))          
+              (princ "</td>\n"))
             (princ "</tr><tr>\n")
             (setq day (mod (- day start-day) 7))
             (when (> day 0)
@@ -1278,7 +1278,7 @@ Upload it to the FTP server."
                  (integerp dd))
         (setq yy (if (< yy 70) (+ 2000 yy) (+ 1900 yy)))
         (list mm dd yy)))))
-        
+
 (defun weblog-princ-dayname (dayname)
   "Print a single day name for weblog-macro-calendar"
   (princ "<font size=\"-2\" color=\"green\">")
@@ -1411,7 +1411,7 @@ Upload it to the FTP server."
 (defun weblog-add-shortcut (&optional name url)
   "Add a shortcut to the table.
 If the name begins with \"=\", don't wrap an anchor tag around the url."
-  (interactive "s Add Shortcut Named: 
+  (interactive "s Add Shortcut Named:
 s URL: ")
   (weblog-with-init-params (buffer-file-name)
     (let (entry)
@@ -1559,7 +1559,7 @@ s URL: ")
 ;; section macro defines a new section
 (defun weblog-macro-section (name)
   (setq *weblog-section* (+ *weblog-section* 1))
-  (concat 
+  (concat
    "<table width=\"99%\" height=\"25px\"><tr><td></td></tr></table>"
    "<a name=\"" (format "Ch%d" *weblog-section*) "\">"
    "<table width=\"99%\">"
@@ -1649,14 +1649,14 @@ s URL: ")
   (setq *weblog-instable-prefix* "")
   "<TABLE cellspacing=5>")
 (defun weblog-macro-ins (head)
-  (let ((result (concat 
+  (let ((result (concat
                *weblog-instable-prefix*
                "<TR valign=top><TD><TT><FONT COLOR=\"#000080\">" head
                "</FONT></TT></TD><TD>")))
     (setq *weblog-instable-prefix* "</TD></TR>")
     result))
 (defun weblog-macro-inscode (head)
-  (let ((result (concat 
+  (let ((result (concat
                *weblog-instable-prefix*
                "<TR valign=top><TD><TT><FONT COLOR=\"#008000\">" head
                "</FONT></TT></TD><TD>")))
@@ -1866,7 +1866,7 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
 
 (defun weblog-insert-month-index-entries (dir start-year start-month start-day
                                               end-year end-month end-day)
-  
+
   (do ((year start-year (1+ year)))
       ((> year end-year))
     (do ((month start-month (1+ month)))
@@ -1952,7 +1952,7 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
          (files (directory-files *weblog-directory* nil *weblog-file-regexp*)))
     ;; Incomplete
     ))
-    
+
 (defun weblog-maybe-upload-previous-month-file (&optional file-name)
   "Create and upload last month's index if today is the first day of this month"
   (let* ((file (or file-name (buffer-file-name)))
