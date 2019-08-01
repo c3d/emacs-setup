@@ -106,8 +106,6 @@
 (jka-compr-install)
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
