@@ -69,6 +69,9 @@
     (insert-repeated (1+ (length comment-start)) 0 "" " " "")
     (insert-repeated comment-width comment-width "" "*" comment-end)))
 
+(defcustom ddd-project-name "Tao3D"
+  "Name of the project for header commands")
+
 (defun insert-xlr-header ()
   "Insert standard header at point"
   (interactive)
@@ -76,7 +79,7 @@
   (insert-repeated comment-width comment-width
                    (concat comment-start " " (buffer-name))
                    " "
-                   (concat "XL - An extensible language" comment-end))
+                   (concat ddd-project-name " project" comment-end))
   (insert-nl)
   (insert-comment-line "*")
   (insert-comment-line " ")
@@ -92,16 +95,31 @@
   (insert-comment-line " ")
   (insert-comment-line " ")
   (insert-comment-line "*")
-  (insert-comment " (C) 2019 Christophe de Dinechin <christophe@dinechin.org>")
+  (insert-comment "  (C) 2019 Christophe de Dinechin <christophe@dinechin.org>")
   (insert-comment "  This software is licensed under the GNU General Public License v3")
-  (insert-comment "  See LICENSE file for details.")
+  (insert-comment-line "*")
+  (insert-gpl-header)
   (insert-comment-line "*"))
 
 (defun insert-gpl-header ()
   "Insert a standard GPL header"
   (interactive)
-  (insert-comment "This software is licensed under the GNU General Public License v3")
-  (insert-comment "See file COPYING for details."))
+  (insert-comment (concat "  This file is part of " ddd-project-name "."))
+  (insert-comment "")
+  (insert-comment (concat "  " ddd-project-name
+                          " is free software: you can redistribute it and/or modify"))
+  (insert-comment "  it under the terms of the GNU General Public License as published by")
+  (insert-comment "  the Free Software Foundation, either version 3 of the License, or")
+  (insert-comment "  (at your option) any later version.")
+  (insert-comment "")
+  (insert-comment (concat "  " ddd-project-name " is distributed in the hope that it will be useful,"))
+  (insert-comment "  but WITHOUT ANY WARRANTY; without even the implied warranty of")
+  (insert-comment "  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the")
+  (insert-comment "  GNU General Public License for more details.")
+  (insert-comment "")
+  (insert-comment "  You should have received a copy of the GNU General Public License")
+  (insert-comment (concat "  along with " ddd-project-name ".  "
+                          "If not, see <https://www.gnu.org/licenses/>.")))
 
 
 ;; Commenting current region line by line
