@@ -9,8 +9,8 @@
 (require 'mu4e)
 (require 'mu4e-actions)
 (setq mu4e-maildir "~/Maildir/")
-(setq mu4e-drafts-folder "/GMail/[Gmail].Drafts")
-(setq mu4e-sent-folder   "/GMail/[Gmail].Sent Mail")
+(setq mu4e-drafts-folder "/GMail/[GMail].Drafts")
+(setq mu4e-sent-folder   "/GMail/[GMail].Sent Mail")
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
 (setq mu4e-sent-messages-behavior 'delete)
 ;; allow for updating mail using 'U' in the main view:
@@ -18,9 +18,14 @@
 
 ;; shortcuts
 (setq mu4e-maildir-shortcuts
-    '( ("/INBOX"               . ?i)
-       ("/[Gmail].All Mail"    . ?a)
-       ("/[Gmail].Sent Mail"   . ?s)))
+    '( ("/GMail/INBOX"                  . ?I)
+       ("/GMail/[GMail].Sent Mail"      . ?S)
+       ("/GMail/[GMail].All Mail"       . ?A)
+       ("/RedHat/INBOX"                 . ?i)
+       ("/RedHat/[GMail].Sent Mail"     . ?s)
+       ("/RedHat/[GMail].All Mail"      . ?a)
+       ("/Patches"                      . ?p)
+))
 
 ;; something about ourselves
 (setq
@@ -49,7 +54,7 @@
 
 ;; spell check
 (add-hook 'mu4e-compose-mode-hook
-        (defun my-do-compose-stuff ()
+        (defun ddd-mu4e-compose-stuff ()
            "My settings for message composition."
            (set-fill-column 72)
            (flyspell-mode)))
@@ -77,8 +82,8 @@
 ;------------------------------------------------------------------------------
 ;; configuration for sending mail
 ;------------------------------------------------------------------------------
-(setq mu4e-sent-folder "/GMail/[Gmail].Sent Mail"
-      mu4e-drafts-folder "/GMail/[Gmail].Drafts"
+(setq mu4e-sent-folder "/GMail/Sent"
+      mu4e-drafts-folder "/GMail/Drafts"
       message-send-mail-function 'smtpmail-send-it
       smtpmail-stream-type 'starttls
       smtpmail-default-smtp-server "smtp.gmail.com"
@@ -87,8 +92,8 @@
 
 (defvar mu4e-account-alist
   '(("GMail"
-     (mu4e-sent-folder "/GMail/[Gmail].Sent Mail")
-     (mu4e-drafts-folder "/GMail/[Gmail].Drafts")
+     (mu4e-sent-folder "/GMail/Sent")
+     (mu4e-drafts-folder "/GMail/Drafts")
      (user-mail-address "christophe@dinechin.org")
      (smtpmail-smtp-user "christophe.de.dinechin")
      (smtpmail-default-smtp-server "smtp.gmail.com")
