@@ -1527,7 +1527,10 @@ Upload it to the FTP server."
            (mm (weblog-integer-substring name 2 4 1))
            (dd (weblog-integer-substring name 4 6 1)))
       (setq yy (if (< yy 70) (+ 2000 yy) (+ 1900 yy)))
-      (list mm dd yy))))
+      (message "Currently have %i %i %i" yy mm dd)
+      (if (and (= yy 2000) (= mm 01) (= dd 01))
+          (calendar-current-date)
+        (list mm dd yy)))))
 
 (defun weblog-integer-substring (str start end default)
   (let ((res (ignore-errors
