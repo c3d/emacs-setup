@@ -24,7 +24,9 @@
 
 (setq load-path (append '("~/.emacs-lisp"
                           "/usr/local/share/clang"
-                          "/usr/local/share/emacs/site-lisp") load-path))
+                          "/usr/local/share/emacs/site-lisp"
+                          "/usr/local/share/emacs/site-lisp/notmuch")
+                        load-path))
 (setq exec-path (append exec-path (list "/opt/local/bin" "/usr/local/bin")))
 
 ;; Default setenv
@@ -56,6 +58,7 @@
 (require 'json-pretty-print)
 (require 'gnus-article-treat-patch)
 (require 'clang-format)
+(require 'notmuch)
 ; (load "~/.emacs-lisp/haskell-mode-2.4/haskell-site-file")
 (load "~/.emacs-lisp/mu4e-setup.el")
 (load "~/.emacs-lisp/mu4e-jump-to-list.el")
@@ -137,7 +140,7 @@
  '(blink-cursor-mode nil)
  '(package-selected-packages
    (quote
-    (imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
+    (go-mode imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
  '(safe-local-variable-values
    (quote
     ((c-indent-level . 8)
