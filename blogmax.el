@@ -310,6 +310,8 @@
 (defconst *weblog-equal-sign-char* (string-to-char "="))
 (defconst *weblog-at-sign-char* (string-to-char "@"))
 (defconst *weblog-newline-char* (string-to-char "\n"))
+(defconst *weblog-macro-close-char* (string-to-char "}"))
+(defconst *weblog-macro-double-quote-char* (string-to-char "\""))
 (defconst *weblog-lt-char* (string-to-char "<"))
 (defconst *weblog-sharp-sign-char* (string-to-char "\#"))
 (defconst *weblog-char-map*
@@ -329,10 +331,14 @@
     (";-)" "<img class=\"smiley\" src=\"wink-smiley.png\"/>")
     (":-)" "<img class=\"smiley\" src=\"smiley.png\"/>")
     (":-(" "<img class=\"smiley\" src=\"frown-smiley.png\"/>")
+    ("\\(\\s-\\)_\\(.*?\\)_" "\\1\\\\<em>\\2</em>")
+    ("\\(\\s-\\)\\*\\(.*?\\)\\*" "\\1\\\\<strong>\\2</strong>")
+    ("\\(\\s-\\)`\\(.*?\\)`" "\\1\\\\<tt>\\2</tt>")
     ("rhbz\\([0-9]+\\)" "<a href=\"http://bugzilla.redhat.com/show_bug.cgi?id=\\1\">Red Hat Bugzilla \\1</a>")
     ("kbz\\([0-9]+\\)" "<a href=\"http://bugzilla.kernel.org/show_bug.cgi?id=\\1\">Kernel Bugzilla \\1</a>")
     ("fdbz\\([0-9]+\\)" "<a href=\"https://bugs.freedesktop.org/show_bug.cgi?id=\\1\">FreeDesktop Bug \\1</a>")
     ("gbz\\([0-9]+\\)" "<a href=\"https://debbugs.gnu.org/cgi/bugreport.cgi?bug=\\1\">GNU Bug \\1</a>")
+    ("\\bk8s\\b" "Kubernetes")
     ))
 
 (defconst *weblog-code-map*
@@ -541,16 +547,24 @@ File defaults to *weblog-shortcuts-file*"
   "Expand the macros & shortcuts in the current buffer."
   (interactive)
   (weblog-with-init-params (or file (buffer-file-name))
-    (loop
-     (let ((cnt (weblog-expand-macros)))
-       (if (eql 0 cnt) (return))))
-    (weblog-narrow
-     "<!--BEGIN-BLOGMAX-->" "<!--END-BLOGMAX-->"
-     (weblog-insert-bugmenot-macros)
-     (weblog-add-preformatted)
-     (weblog-add-bullets)
-     (weblog-add-numbered-lists)
-     (weblog-add-paragraphs))
+    (goto-char (point-min))
+    (while (weblog-process-regexp-operations
+            (list
+             *weblog-skip-scripts*
+             *weblog-skip-pre*
+             *weblog-skip-tt*
+             *weblog-do-shortcuts*
+             *weblog-do-lisp-forms*
+             *weblog-do-preformatted*
+             *weblog-do-diagrams*
+             *weblog-do-macros*
+             *weblog-do-bullets*
+             *weblog-do-numbered-lists*)))
+
+    ;; Once this is all done, replace double paragraphs with <p>...</p>
+    (goto-char (point-min))
+    (while (re-search-forward "^[^ \t<{\n]\\(.+\n\\)+?$" nil t)
+      (replace-match "<p>\n\\&</p>" nil nil))
     (unless leave-escapes (weblog-remove-escapes))))
 
 (defun search-forward-non-escaped (string &optional limit)
@@ -597,12 +611,12 @@ replace only the string."
   "Apply the body within a section identified by begin-delim and end-delim"
   `(save-restriction
      (goto-char (point-min))
-    (setq begin (search-forward-non-escaped ,start-delim nil))
-    (unless (null begin)
-      (setq end (search-forward-non-escaped ,end-delim nil))
-      (unless (null end)
-        (narrow-to-region begin end)
-        ,@body))))
+     (setq begin (search-forward-non-escaped ,start-delim nil))
+     (unless (null begin)
+       (setq end (search-forward-non-escaped ,end-delim nil))
+       (unless (null end)
+         (narrow-to-region begin end)
+         ,@body))))
 
 (defun weblog-convert-shortcuts ()
   "Convert shortcuts from double-quote delimited to {=....} delimited"
@@ -675,71 +689,118 @@ all text files."
   "Look up NAME in the *weblog-shortcuts*. Return its value or nil."
   (cadr (assoc (downcase name) *weblog-shortcuts*)))
 
-(defun weblog-add-paragraphs ()
-  "Add <p>...</p> sections for double newlines in HTML body"
-  (goto-char (point-min))
-  (while (re-search-forward "^[^ \t<{\n]\\(.+\n\\)+?$" nil t)
-    (replace-match "<p>\\&</p>\n" nil nil))
-  (goto-char (point-min))
-  (while (search-forward "\n</p>" nil t)
-    (replace-match "</p>")))
+(defun weblog-process-regexp-operations (operations)
+  (let (first-pos first-op (start (point)))
+    (dolist (rule operations)
+      (goto-char start)
+      (if (re-search-forward (car rule) nil t)
+          (let ((pos (match-beginning 0)))
+            (if (or (null first-pos) (< pos first-pos))
+                (setq first-pos pos
+                      first-op rule)))))
+    (if (null first-pos)
+        nil
+      (goto-char start)
+      (let ((pattern (car first-op))
+            (body (cdr first-op)))
+        (if (re-search-forward pattern)
+            (eval (cons 'progn body)))
+        t))))
 
-(defun weblog-add-bullets ()
-  "Add <ul>...</ul> sections for lines beginning in * in HTML body"
+; Skip all "script" sections, which may contain {} code
+(defconst *weblog-skip-scripts*
+  '("<script>"
+    (search-forward "</script>")))
+(defconst *weblog-skip-pre*
+  '("<pre>"
+    (search-forward "</pre>")))
+(defconst *weblog-skip-tt*
+  '("<tt>"
+    (search-forward "</tt>")))
 
-  (goto-char (point-min))
-  (while (re-search-forward "^\\(\\* \\(.+\n[ \t]*\\)+\n[ \t]*\\)+" nil t)
-    (save-restriction
-      (narrow-to-region (match-beginning 0) (match-end 0))
-      (replace-match "<ul>\n\\&</ul>\n" nil nil)
-      (goto-char (point-min))
-      (while (re-search-forward "^\\* \\(\\(.+\n[ \t]*\\)+\\)\n" nil t)
-        (replace-match "<li>\\1</li>\n"))
-      (goto-char (point-min))
-      (while (search-forward "\n</li>" nil t)
-        (replace-match "</li>")))))
+; Turn lines beginning with * into <ul>...</ul> bullets
+(defconst *weblog-do-bullets*
+  '("^\\(\\* \\(.+\n[ \t]*\\)+\\)+"
+    (let ((start (match-beginning 0))
+          (end (match-end 0)))
+      (save-restriction
+        (narrow-to-region start end)
+        (replace-match "<ul>\n\\&</ul>\n" nil nil)
+        (goto-char start)
+        (while (re-search-forward "\n\\* " nil t)
+          (replace-match "</li>\n<li>"))
+        (goto-char start)
+        (if (search-forward "</li>" nil t)
+            (replace-match ""))
+        (if (search-forward "</ul>" nil t)
+            (replace-match "</li></ul>")))
+      (goto-char start))))
 
-(defun weblog-add-numbered-lists ()
-  "Add <ol>...</ol> sections for lines beginning in # in HTML body"
-
-  (goto-char (point-min))
-  (while (re-search-forward "^\\(\\# \\(.+\n[ \t]*\\)+\n[ \t]*\\)+" nil t)
-    (save-restriction
-      (narrow-to-region (match-beginning 0) (match-end 0))
+; Turn lines that begin with # into <ol>...</ol> numbered lists
+(defconst *weblog-do-numbered-lists*
+  '("^\\(# \\(.+\n[ \t]*\\)+\\)+"
+    (let ((start (match-beginning 0))
+          (end (match-end 0)))
       (replace-match "<ol>\n\\&</ol>\n" nil nil)
-      (goto-char (point-min))
-      (while (re-search-forward "^\\# \\(\\(.+\n[ \t]*\\)+\\)\n" nil t)
-        (replace-match "<li>\\1</li>\n"))
-      (goto-char (point-min))
-      (while (search-forward "\n</li>" nil t)
-        (replace-match "</li>")))))
+      (save-restriction
+        (narrow-to-region start end)
+        (goto-char start)
+        (while (re-search-forward "\n# " nil t)
+          (replace-match "</li>\n<li>"))
+        (goto-char start)
+        (if (search-forward "</li>" nil t)
+            (replace-match ""))
+        (if (search-forward "</ol>" nil t)
+            (replace-match "</li></ol>")))
+      (goto-char start))))
 
-(defun weblog-add-preformatted ()
-  "Add <pre>...</pre> sections for text between ```"
-  (goto-char (point-min))
-  (while (re-search-forward "{{{\n*\\(\\(.*?\n*?\\)*?\\)}}}" nil t)
+; Turn {{{...}}} into <pre>...</pre> sections
+(defconst *weblog-do-preformatted*
+  '("{{{\n*\\(\\(.*?\n*?\\)*?\\)}}}"
     (replace-match "<pre>\\1</pre>" nil nil)))
 
-(defun weblog-expand-macros ()
-  (weblog-do-replacement
-   '(lambda (s)
-      (if (eq 0 (length s))
-          nil
-        (cond ((eq *weblog-at-sign-char* (elt s 0))
-               ;; {@shortcut} looks up shortcut
-               (weblog-lookup-shortcut (substring s 1)))
-              ((eq *weblog-equal-sign-char* (elt s 0))
-               ;; {=forms...} evals (forms...)
-               (let ((form (car (read-from-string
-                                 (concat "(" (substring s 1) ")")))))
-                 (eval form)))
-              ((eq (char-syntax (elt s 0)) ?w)
-               ;; {forms...} evals (weblog-macro-forms...)
-               (ignore-errors
-                (let ((form (car (read-from-string
-                                 (concat "(weblog-macro-" s ")")))))
-                  (eval form)))))))
-   "{" "}" nil t))
+; Mermaid diagram support - Neeed to add this to <head> in page template:
+;    <!-- Mermaid (diagrams) -->
+;    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.0/dist/mermaid.min.js"></script>
+;    <script>mermaid.initialize({startOnLoad:true});</script>
+(defconst *weblog-do-diagrams*
+  '("{diagram}\n*?\\(\\(.*?\n*?\\)*?\\){margaid}"
+    (replace-match "<div class=\"mermaid\">\\1</div>" nil nil)))
+
+; Shortcuts in the form {@toto}
+(defconst *weblog-do-shortcuts*
+  '("{@\\([a-zA-Z0-9-]*?\\)}"
+    (let ((start (match-beginning 0)))
+      (replace-match (weblog-lookup-shortcut (match-string 1)))
+      (goto-char start))))
+
+; Evaluation of actual forms in {=...}
+(defconst *weblog-do-lisp-forms*
+  '("{=\\(.*?\\)}"
+    (let ((start (match-beginning 0))
+          (form (car (read-from-string
+                      (concat "(" (match-string 1) ")")))))
+      (replace-match (eval form))
+      (goto-char start))))
+
+; Macros are {blah "x" 2} which evaluates as (weblog-macro-blah "x" 2)
+(defconst *weblog-do-macros*
+  '("{\\([a-zA-Z0-9-]*?\\)"
+    (let ((start (match-beginning 0))
+          (args (match-end 1))
+          (quoted nil))
+      (while (or quoted (not (eq (char-after) *weblog-macro-close-char*)))
+        (if (eq (char-after) *weblog-macro-double-quote-char*)
+            (setq quoted (not quoted)))
+        (forward-char))
+      (let* ((end (point))
+             (macro (buffer-substring (+ start 1) end))
+             (form (car (read-from-string
+                         (concat "(weblog-macro-" macro ")"))))
+             (value (eval form)))
+        (delete-region start (+ end 1))
+        (insert value)
+        (goto-char start)))))
 
 (defun weblog-remove-escapes ()
   "Remove escape characters (\"\\\") from the current buffer"
@@ -784,7 +845,7 @@ using the *weblog-page-template-file*."
         (*weblog-saving-story* *weblog-saving-story*))
     (weblog-with-init-params file-name
       (if (null file-name)
-        (message "No file for current buffer")
+          (message "No file for current buffer")
         (message "%s" (concat "Saving " file-name "..."))
         (when (weblog-story-file-p file-name)
           (setq *weblog-content-template-file* *weblog-story-template-file*
@@ -1395,6 +1456,14 @@ Upload it to the FTP server."
 ;; {email} macro
 (defun weblog-macro-email ()
   *weblog-email*)
+
+;; {tt} macro
+(defun weblog-macro-tt (text)
+  (concat "<tt>" (weblog-process-codemap text) "</tt>"))
+
+;; {em} macro
+(defun weblog-macro-em (text)
+  (concat "<em>" (weblog-process-codemap text) "</em>"))
 
 ;; {url} macro
 (defun weblog-macro-url ()
@@ -2282,20 +2351,6 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
 (defun weblog-macro-picdir (name)
   (setq *weblog-picdir* (concat name "/")))
 
-;; {pre} macro
-;; Insert a reference to the named info with the given text
-(defun weblog-macro-pre ()
-  (save-excursion
-    (let ((start (point))
-          (end (search-forward "{erp}")))
-      (let ((text (weblog-process-codemap (buffer-substring start end))))
-        (delete-region start end)
-        (concat "<pre>" text "</pre>")))))
-(defun weblog-macro-erp ()
-  "</pre>")
-(defun weblog-macro-tt (text)
-  (concat "<tt>" (weblog-process-codemap text) "</tt>"))
-
 ;; section macro defines a new section
 (defun weblog-macro-section (name)
   (setq *weblog-section* (+ *weblog-section* 1))
@@ -2352,10 +2407,3 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
   (concat "<iframe class=\"youtube\" src=\""
           (replace-regexp-in-string "/watch\\?v=" "/embed/" link)
           "\" frameborder=\"0\" allowfullscreen></iframe>"))
-
-; Mermaid diagram support - Neeed to add this to <head> in page template:
-;    <!-- Mermaid (diagrams) -->
-;    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.0/dist/mermaid.min.js"></script>
-;    <script>mermaid.initialize({startOnLoad:true});</script>
-(defun weblog-macro-diagram () "<div class=\"mermaid\">")
-(defun weblog-macro-margaid () "</div>")
