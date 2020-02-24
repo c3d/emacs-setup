@@ -95,7 +95,9 @@
   (insert-comment-line " ")
   (insert-comment-line " ")
   (insert-comment-line "*")
-  (insert-comment "  (C) 2019 Christophe de Dinechin <christophe@dinechin.org>")
+  (insert-comment
+   (format "  (C) %s Christophe de Dinechin <christophe@dinechin.org>"
+           (calendar-extract-year (calendar-current-date))))
   (insert-comment "  This software is licensed under the GNU General Public License v3")
   (insert-comment-line "*")
   (insert-gpl-header)
