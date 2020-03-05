@@ -50,7 +50,9 @@
 ;;   - html2markdown | grep -v '&nbsp_place_holder;' (Requires html2text pypi)
 ;;   - w3m -dump -cols 80 -T text/html
 ;;   - view in browser (provided below)
-(setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout")
+;; (setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout")
+(setq mu4e-html2text-command
+      "w3m -dump -T text/html -cols 80 -o display_link_number=true")
 
 ;; spell check
 (add-hook 'mu4e-compose-mode-hook
@@ -73,7 +75,7 @@
 
 
 ;; fetch mail every hour
-(setq mu4e-update-interval 3600)
+(setq mu4e-update-interval 300)
 
 ;; No stinking duplicates
 (setq mu4e-headers-skip-duplicates t)
@@ -134,6 +136,10 @@
 
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
+    :name  "work"
+    :query "subject:kata OR list:kvm-containers-list"
+    :key ?w)
+  (make-mu4e-bookmark
     :name  "kvm"
     :query "list:kvm*"
     :key ?k))
@@ -167,3 +173,14 @@
     :name  "Just me"
     :query "NOT flag:list AND NOT flag:draft"
     :key ?j))
+
+(setq mu4e-view-fields '(:from :to  :cc :subject :flags :date :maildir
+                               :mailing-list :tags :attachments
+                               :signature :decryption :message-id)
+      mu4e-headers-fields '((:flags         . 8)
+                            (:human-date    . 8)
+                                        ;(:acctshortname . 4)
+                            (:mailing-list  . 15)
+                            (:from-or-to    . 25)
+                                        ;(:size          . 6)
+                            (:subject       . nil)))
