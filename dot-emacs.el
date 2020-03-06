@@ -86,7 +86,7 @@
 (global-font-lock-mode t)
 (setq c-default-style "ddd")
 ;(setq gnus-default-nntp-server "news.free.fr")
-(setq gnus-default-nntp-server "news.gmane.org")
+(setq gnus-default-nntp-server "news.gmane.io")
 
 ;; Check auto-compression, add files that are really gzipped
 (require 'jka-compr)
