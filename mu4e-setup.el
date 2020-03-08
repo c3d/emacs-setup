@@ -9,22 +9,35 @@
 (require 'mu4e)
 (require 'mu4e-actions)
 (setq mu4e-maildir "~/Maildir/")
-(setq mu4e-drafts-folder "/GMail/[GMail].Drafts")
-(setq mu4e-sent-folder   "/GMail/[GMail].Sent Mail")
+(setq mu4e-drafts-folder "/gmail/Drafts")
+(setq mu4e-sent-folder   "/gmail/Sent")
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
-(setq mu4e-sent-messages-behavior 'delete)
+;; (setq mu4e-sent-messages-behavior 'delete)
 ;; allow for updating mail using 'U' in the main view:
-(setq mu4e-get-mail-command "offlineimap")
+(setq mu4e-get-mail-command "mbsync -V -q all")
+(setq  message-citation-line-format "On %Y-%m-%d at %R %Z, %f wrote..."
+       message-citation-line-function 'message-insert-formatted-citation-line)
+
 
 ;; shortcuts
 (setq mu4e-maildir-shortcuts
-    '( ("/GMail/INBOX"                  . ?I)
-       ("/GMail/[GMail].Sent Mail"      . ?S)
-       ("/GMail/[GMail].All Mail"       . ?A)
-       ("/RedHat/INBOX"                 . ?i)
-       ("/RedHat/[GMail].Sent Mail"     . ?s)
-       ("/RedHat/[GMail].All Mail"      . ?a)
-       ("/Patches"                      . ?p)
+    '( ("/gmail/Inbox"                  . ?I)
+       ("/gmail/Sent"                   . ?S)
+       ("/gmail/[GMail].All Mail"       . ?A)
+       ("/rh/Act"                       . ?a)
+       ("/rh/Act/Act Now"               . ?n)
+       ("/rh/Act/Keep"                  . ?k)
+       ("/rh/Act/Review"                . ?r)
+       ("/rh/Act/Travel"                . ?t)
+       ("/rh/Inbox"                     . ?i)
+       ("/rh/Sent"                      . ?s)
+       ("/rh/Bugzilla"                  . ?b)
+       ("/rh/Dev/Fedora notifications"  . ?f)
+       ("/rh/Dev/virt-devel"            . ?v)
+       ("/rh/Dev/qemu-devel"            . ?q)
+       ("/rh/WIP/Patches"               . ?p)
+       ("/rh/WIP/Pull"                  . ?l)
+       ("/rh/WIP/RFC"                   . ?c)
 ))
 
 ;; something about ourselves
@@ -58,7 +71,7 @@
 (add-hook 'mu4e-compose-mode-hook
         (defun ddd-mu4e-compose-stuff ()
            "My settings for message composition."
-           (set-fill-column 72)
+           (set-fill-column 76)
            (flyspell-mode)))
 
 ;; add option to view html message in a browser
@@ -74,7 +87,7 @@
   '("Patch" . mu4e-action-git-apply-mbox) t)
 
 
-;; fetch mail every hour
+;; fetch mail every 5 minutes
 (setq mu4e-update-interval 300)
 
 ;; No stinking duplicates
@@ -84,8 +97,8 @@
 ;------------------------------------------------------------------------------
 ;; configuration for sending mail
 ;------------------------------------------------------------------------------
-(setq mu4e-sent-folder "/GMail/Sent"
-      mu4e-drafts-folder "/GMail/Drafts"
+(setq mu4e-sent-folder "/gmail/Sent"
+      mu4e-drafts-folder "/gmail/Drafts"
       message-send-mail-function 'smtpmail-send-it
       smtpmail-stream-type 'starttls
       smtpmail-default-smtp-server "smtp.gmail.com"
@@ -93,18 +106,18 @@
       smtpmail-smtp-service 587)
 
 (defvar mu4e-account-alist
-  '(("GMail"
-     (mu4e-sent-folder "/GMail/Sent")
-     (mu4e-drafts-folder "/GMail/Drafts")
+  '(("gmail"
+     (mu4e-sent-folder "/gmail/Sent")
+     (mu4e-drafts-folder "/gmail/Drafts")
      (user-mail-address "christophe@dinechin.org")
      (smtpmail-smtp-user "christophe.de.dinechin")
      (smtpmail-default-smtp-server "smtp.gmail.com")
      (smtpmail-smtp-server "smtp.gmail.com")
      (smtpmail-stream-type starttls)
      (smtpmail-smtp-service 587))
-    ("RedHat"
-     (mu4e-sent-folder "/RedHat/Sent")
-     (mu4e-drafts-folder "/RedHat/Drafts")
+    ("rh"
+     (mu4e-sent-folder "/rh/Sent")
+     (mu4e-drafts-folder "/rh/Drafts")
      (user-mail-address "dinechin@redhat.com")
      (smtpmail-smtp-user "cdupontd")
      (smtpmail-default-smtp-server "smtp.redhat.com")
@@ -136,9 +149,9 @@
 
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
-    :name  "work"
-    :query "subject:kata OR list:kvm-containers-list"
-    :key ?w)
+    :name  "Hot topics"
+    :query "subject:kata OR list:kvm-containers-list OR maildir:/Act"
+    :key ?h)
   (make-mu4e-bookmark
     :name  "kvm"
     :query "list:kvm*"
@@ -160,25 +173,25 @@
     :key ?v))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
-    :name  "all virt"
+    :name  "All virt"
     :query "list:virt* OR list:qemu* OR list:kvm*"
     :key ?V))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
-    :name  "spice"
+    :name  "SPICE"
     :query "list:spice*"
     :key ?s))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
     :name  "Just me"
-    :query "NOT flag:list AND NOT flag:draft"
+    :query "NOT flag:list AND NOT flag:draft AND flag:unread"
     :key ?j))
 
 (setq mu4e-view-fields '(:from :to  :cc :subject :flags :date :maildir
                                :mailing-list :tags :attachments
                                :signature :decryption :message-id)
       mu4e-headers-fields '((:flags         . 8)
-                            (:human-date    . 8)
+                            (:human-date    . 12)
                                         ;(:acctshortname . 4)
                             (:mailing-list  . 15)
                             (:from-or-to    . 25)
