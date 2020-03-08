@@ -54,7 +54,6 @@
 (cscope-setup)
 (require 'php-mode)
 (require 'chronometer)
-(require 'lldb)
 (require 'json-pretty-print)
 (require 'gnus-article-treat-patch)
 (require 'clang-format)
