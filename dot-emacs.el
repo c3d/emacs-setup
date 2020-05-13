@@ -52,6 +52,7 @@
 (require 'git-blame)
 (require 'xcscope)
 (cscope-setup)
+(add-hook 'go-mode-hook (function cscope-minor-mode))
 (require 'php-mode)
 (require 'chronometer)
 (require 'json-pretty-print)
