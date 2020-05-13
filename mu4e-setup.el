@@ -87,8 +87,8 @@
   '("Patch" . mu4e-action-git-apply-mbox) t)
 
 
-;; fetch mail every 5 minutes
-(setq mu4e-update-interval 300)
+;; fetch mail every 2 hours
+(setq mu4e-update-interval 7200)
 
 ;; No stinking duplicates
 (setq mu4e-headers-skip-duplicates t)
