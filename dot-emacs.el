@@ -38,9 +38,9 @@
 ;; Default setenv
 (defun setenv-compiled ()
   (interactive)
-  (setenv "BUILDENV" "macosx-clang")
-  (setenv "PATH" (concat "/opt/local/bin:" (getenv "PATH") ":/usr/local/bin:/usr/local/opt/qt/bin"))
-  (setenv "PKG_CONFIG_PATH" "/usr/local/share/pkgconfig:/usr/local/lib/pkgconfig"))
+  (setenv "BUILDENV" "linux")
+  (setenv "PATH" (concat "/opt/local/bin:" (getenv "PATH") ":/usr/local/bin"))
+  (setenv "PKG_CONFIG_PATH" "/usr/local/share/pkgconfig:/usr/local/lib/pkgconfig:/usr/ddd/share/pkgconfig:/usr/ddd/lib/pkgconfig"))
 (setenv-compiled)
 
 (require 'cdefs)
@@ -69,7 +69,7 @@
 (load "~/.emacs-lisp/lisp/progmodes/gud.el")
 
 ;;(set-background-color "Wheat")
-(set-background-color "#E0E0FE")
+(set-background-color "LightSkyBlue")
 (set-foreground-color "Black")
 (set-cursor-color "Orange")
 (set-mouse-color "Blue")
@@ -111,6 +111,8 @@
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
+(add-to-list 'default-frame-alist (cons 'width 100))
+(add-to-list 'default-frame-alist (cons 'height 80))
 
 ;; Colorize compilation buffers
 (require 'ansi-color)
