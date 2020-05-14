@@ -50,6 +50,7 @@
 (require 'xl)
 (require 'defaults)
 (require 'blogmax)
+(require 'magit)
 (require 'vc)
 (require 'vc-git)
 (require 'git-blame)
