@@ -41,7 +41,6 @@
 (require 'keydefs)
 (require 'findgrep)
 (require 'comments)
-(require 'checkout)
 (require 'ia64-asm-mode)
 (require 'xl)
 (require 'defaults)
@@ -54,8 +53,6 @@
 (cscope-setup)
 (add-hook 'go-mode-hook (function cscope-minor-mode))
 (require 'php-mode)
-(require 'chronometer)
-(require 'json-pretty-print)
 (require 'gnus-article-treat-patch)
 (require 'clang-format)
 (require 'notmuch)
@@ -139,7 +136,7 @@
  '(blink-cursor-mode nil)
  '(package-selected-packages
    (quote
-    (go-mode imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
+    (chronometrist checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
  '(safe-local-variable-values
    (quote
     ((c-indent-level . 8)
