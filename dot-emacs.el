@@ -45,7 +45,6 @@
 (require 'xl)
 (require 'defaults)
 (require 'blogmax)
-(require 'git)
 (require 'vc)
 (require 'vc-git)
 (require 'git-blame)
