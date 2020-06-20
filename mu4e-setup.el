@@ -88,7 +88,7 @@
 
 
 ;; fetch mail every 7 minutes
-(setq mu4e-update-interval 421)
+(setq mu4e-update-interval 7421)
 
 ;; No stinking duplicates
 (setq mu4e-headers-skip-duplicates t)
