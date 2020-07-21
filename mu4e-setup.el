@@ -14,7 +14,7 @@
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
 ;; (setq mu4e-sent-messages-behavior 'delete)
 ;; allow for updating mail using 'U' in the main view:
-(setq mu4e-get-mail-command "mbsync -V -q all")
+(setq mu4e-get-mail-command "mbsync -q all")
 (setq  message-citation-line-format "On %Y-%m-%d at %R %Z, %f wrote..."
        message-citation-line-function 'message-insert-formatted-citation-line)
 
@@ -184,7 +184,7 @@
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
     :name  "Just me"
-    :query "NOT flag:list AND NOT flag:draft AND flag:unread"
+    :query "(to:dinechin@redhat.com OR to:cdupontd@redhat.com OR to:christophe@dinechin.org) AND NOT flag:draft"
     :key ?j))
 
 (setq mu4e-view-fields '(:from :to  :cc :subject :flags :date :maildir
