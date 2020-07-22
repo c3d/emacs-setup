@@ -81,7 +81,7 @@
 (set-variable 'manygrep-topdir "/Users/ddd/Work/spice/spice-gtk")
 (set-variable 'grep-command "grep -in ")
 (set-variable 'compile-command
-              "cd /Users/ddd/Work/spice; make --print-directory debug")
+              "cd ~/Work/qemu && make -j20 && make install")
 (set-variable 'mac-pass-option-to-system nil)
 (setq default-frame-font "fontset-mac")
 ;; (set-default-frame-alist)
