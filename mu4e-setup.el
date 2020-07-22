@@ -23,7 +23,6 @@
 (setq mu4e-maildir-shortcuts
     '( ("/gmail/Inbox"                  . ?I)
        ("/gmail/Sent"                   . ?S)
-       ("/gmail/[GMail].All Mail"       . ?A)
        ("/rh/Act"                       . ?a)
        ("/rh/Act/Act Now"               . ?n)
        ("/rh/Act/Keep"                  . ?k)
@@ -31,7 +30,7 @@
        ("/rh/Act/Travel"                . ?t)
        ("/rh/Inbox"                     . ?i)
        ("/rh/Sent"                      . ?s)
-       ("/rh/Bugzilla"                  . ?b)
+       ("/rh/Bugzillas"                 . ?b)
        ("/rh/Dev/Fedora notifications"  . ?f)
        ("/rh/Dev/virt-devel"            . ?v)
        ("/rh/Dev/qemu-devel"            . ?q)
@@ -175,7 +174,7 @@
   (make-mu4e-bookmark
     :name  "Work"
     :query "list:virt* OR list:qemu* OR list:kvm* OR list:kata* OR subject:kata OR subject:qemu OR maildir:/Act"
-    :key ?w))
+    :key ?o))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
     :name  "Just me"
