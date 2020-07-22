@@ -168,19 +168,14 @@
     :key ?f))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
-    :name  "virt"
+    :name  "Virt"
     :query "list:virt*"
     :key ?v))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
-    :name  "All virt"
-    :query "list:virt* OR list:qemu* OR list:kvm*"
-    :key ?V))
-(add-to-list 'mu4e-bookmarks
-  (make-mu4e-bookmark
-    :name  "SPICE"
-    :query "list:spice*"
-    :key ?s))
+    :name  "Work"
+    :query "list:virt* OR list:qemu* OR list:kvm* OR list:kata* OR subject:kata OR subject:qemu OR maildir:/Act"
+    :key ?w))
 (add-to-list 'mu4e-bookmarks
   (make-mu4e-bookmark
     :name  "Just me"
