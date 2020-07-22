@@ -65,7 +65,7 @@
 ;;   - view in browser (provided below)
 ;; (setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout")
 (setq mu4e-html2text-command
-      "w3m -dump -T text/html -cols 80 -o display_link_number=true")
+      "w3m -dump -T text/html -O utf8 -cols 80 -o display_link_number=true")
 
 ;; spell check
 (add-hook 'mu4e-compose-mode-hook
