@@ -119,7 +119,6 @@
                     ("Black" "LightSeaGreen")
                     ("Black" "LightSteelBlue")
                     ("Black" "FloralWhite")
-                    ("Black" "LightSlateBlue")
                     ("Black" "BlanchedAlmond")
                     ("Black" "LightGoldenrod")
                     ("Black" "LightCyan")
@@ -127,12 +126,7 @@
                     ("Black" "LightYellow")
                     ("Black" "PapayaWhip")
                     ("Black" "PeachPuff")
-                    ("Black" "White")
-                    ("Black" "GreenYellow")
-
-                    ("Red" "Green")
-                    ("Blue" "Yellow")
-                    ("Cyan" "Magenta")))
+                    ("Black" "White")))
 
 (defun cycle-colors ()
   (interactive)
