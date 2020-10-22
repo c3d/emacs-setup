@@ -69,7 +69,7 @@
 (load "~/.emacs-lisp/lisp/progmodes/gud.el")
 
 ;;(set-background-color "Wheat")
-(set-background-color "LightPink")
+(set-background-color "#E0EEC0")
 (set-foreground-color "Black")
 (set-cursor-color "Orange")
 (set-mouse-color "Blue")
