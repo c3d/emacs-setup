@@ -141,7 +141,7 @@
  '(blink-cursor-mode nil)
  '(package-selected-packages
    (quote
-    (magit-gh-pulls gh meson-mode realgud-lldb chronometrist checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
+    (magit-gh-pulls gh meson-mode realgud-lldb chronometrist checkbox git php-mode xcscope ag go-mode go-guru imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
  '(safe-local-variable-values
    (quote
     ((c-indent-level . 8)
