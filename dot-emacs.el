@@ -23,9 +23,10 @@
 ;; End of Options Menu Settings
 
 (setq load-path (append '("~/.emacs-lisp"
+                          "~/.emacs-lisp/lisp/progmodes"
                           "/usr/local/share/clang"
-                          "/usr/local/share/emacs/site-lisp"
-                          "/usr/local/share/emacs/site-lisp/notmuch")
+                          "/opt/local/libexec/llvm-10/libexec/clang-format"
+                          "/usr/local/share/emacs/site-lisp")
                         load-path))
 (setq exec-path (append exec-path (list "/opt/local/bin" "/usr/local/bin")))
 
@@ -60,9 +61,12 @@
 (require 'php-mode)
 (require 'gnus-article-treat-patch)
 (require 'clang-format)
-(require 'notmuch)
+(require 'magit-gh-pulls)
+(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+
 ; (load "~/.emacs-lisp/haskell-mode-2.4/haskell-site-file")
 (load "~/.emacs-lisp/mu4e-setup.el")
+(load "~/.emacs-lisp/lisp/progmodes/gud.el")
 
 ;;(set-background-color "Wheat")
 (set-background-color "#E0E0FE")
@@ -83,6 +87,7 @@
 ;; (set-default-frame-alist)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq-default fill-column 80)
 
 ;; Load hilt19, but not under xemacs
 (load-library "font-lock")
@@ -136,7 +141,7 @@
  '(blink-cursor-mode nil)
  '(package-selected-packages
    (quote
-    (chronometrist checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
+    (magit-gh-pulls gh meson-mode realgud-lldb chronometrist checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
  '(safe-local-variable-values
    (quote
     ((c-indent-level . 8)
