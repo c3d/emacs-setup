@@ -143,25 +143,17 @@
    (quote
     (magit-gh-pulls gh meson-mode realgud-lldb chronometrist checkbox git php-mode xcscope ag go-mode go-guru imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
  '(safe-local-variable-values
-   (quote
-    ((c-indent-level . 8)
+   '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
      (eval ignore-errors
-           (require
-            (quote whitespace))
+           (require 'whitespace)
            (whitespace-mode 1))
      (whitespace-line-column . 79)
      (whitespace-style face indentation)
      (eval progn
-           (c-set-offset
-            (quote case-label)
-            (quote 0))
-           (c-set-offset
-            (quote innamespace)
-            (quote 0))
-           (c-set-offset
-            (quote inline-open)
-            (quote 0))))))
+           (c-set-offset 'case-label '0)
+           (c-set-offset 'innamespace '0)
+           (c-set-offset 'inline-open '0))))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
