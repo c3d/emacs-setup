@@ -140,8 +140,7 @@
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(package-selected-packages
-   (quote
-    (go-guru magit-gh-pulls gh meson-mode realgud-lldb chronometrist checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere projectile magit rust-mode adoc-mode markdown-mode)))
+   '(go-guru magit-gh-pulls gh meson-mode realgud-lldb checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere magit adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
