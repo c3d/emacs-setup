@@ -64,6 +64,13 @@
 (require 'magit-gh-pulls)
 (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
+;; Recent files mode
+(recentf-mode 1)
+(setq recentf-max-menu-items 50)
+(setq recentf-max-saved-items 50)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(run-at-time nil (* 5 60) 'recentf-save-list)
+
 ; (load "~/.emacs-lisp/haskell-mode-2.4/haskell-site-file")
 (load "~/.emacs-lisp/mu4e-setup.el")
 (load "~/.emacs-lisp/lisp/progmodes/gud.el")
@@ -140,7 +147,7 @@
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(package-selected-packages
-   '(go-guru magit-gh-pulls gh meson-mode realgud-lldb checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere magit adoc-mode))
+   '(mu4e-views go-guru magit-gh-pulls gh meson-mode realgud-lldb checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere magit adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
