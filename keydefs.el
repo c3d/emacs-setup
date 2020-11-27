@@ -97,11 +97,8 @@
 
 (global-set-key [f8] 'dabbrev-expand)
 
-(global-set-key [f9] 'manygrep)
-(global-set-key [(control f9)] 'manyfindgrep)
-(global-set-key [(meta f9)] 'manyfindgrep)
-(define-key ctl-o-map [f9] 'store-manygrep-values)
-
+(global-set-key [control f9] 'projectile-ag)
+(global-set-key [f9] 'gud-step) ; f9
 (global-set-key [f10] 'gud-next) ; f10
 (global-set-key [(control f10)] 'gud-step) ; f10
 
