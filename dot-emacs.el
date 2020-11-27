@@ -56,7 +56,7 @@
 (require 'vc-git)
 (require 'git-blame)
 (require 'xcscope)
-(cscope-setup)
+; (cscope-setup)
 (add-hook 'go-mode-hook (function cscope-minor-mode))
 (require 'php-mode)
 (require 'gnus-article-treat-patch)
