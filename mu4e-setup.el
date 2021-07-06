@@ -89,8 +89,8 @@
 (setq
  mu4e-update-interval           42100   ;; Roughly twice a day
  mu4e-headers-skip-duplicates   t       ;; Don't record duplicates
- mu4e-index-cleanup             nil     ;; Don't do a full cleanup check
- mu4e-index-lazy-check          t       ;; Don't consider up-to-date dirs
+ mu4e-index-cleanup             t       ;; Do full cleanup check
+ mu4e-index-lazy-check          nil     ;; Don't rely on directory timestamps
  mu4e-view-auto-mark-as-read    t       ;; Don't automatically mark mail as read
 )
 
