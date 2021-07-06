@@ -176,10 +176,10 @@
   (interactive)
   (insert-comment-line "%"))
 
-(defun remove-trailing-spaces ()
-  "Remove trailing spaces in buffer"
+(defun unhook-trailing-whitespace ()
+  "Remove hook removing trailing whitespace from current buffer"
   (interactive)
-  (query-replace-regexp "[ 	]+$" "" nil))
+  (remove-hook 'before-save-hook 'delete-trailing-whitespace))
 
 (defun LISO-comment (beg end level)
   "

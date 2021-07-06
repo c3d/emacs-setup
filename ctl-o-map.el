@@ -23,7 +23,7 @@
 (define-key ctl-o-map "m" 'man)
 (define-key ctl-o-map "n" 'gnus)
 (define-key ctl-o-map "p" 'comment-region-large)
-(define-key ctl-o-map "r" 'remove-trailing-spaces)
+(define-key ctl-o-map "r" 'delete-trailing-whitespace)
 (define-key ctl-o-map "s" 'shell)
 (define-key ctl-o-map "t" 'talk-connect)
 (define-key ctl-o-map "y" 'rotate-yank-pointer)
@@ -43,4 +43,3 @@
 (define-key ctl-o-map [?\C-5] 'insert-percent-comment)
 
 (define-key ctl-o-map "{" 'c-set-style)
-
