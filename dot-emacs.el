@@ -147,7 +147,7 @@
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(package-selected-packages
-   '(mu4e-views go-guru magit-gh-pulls gh meson-mode realgud-lldb checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere magit adoc-mode))
+   '(rust-mode markdown-mode flymake-json mu4e-views go-guru magit-gh-pulls gh meson-mode realgud-lldb checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere magit adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
