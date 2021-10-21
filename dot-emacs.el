@@ -32,10 +32,10 @@
 (require 'gud)
 
 ;; Packages from the world
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (require 'package)
 (require 'use-package)
 (require 'use-package-ensure)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (setq use-package-always-ensure t)
 
 (use-package auto-package-update
