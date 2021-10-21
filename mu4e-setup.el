@@ -3,6 +3,7 @@
 ;  mu4e configuration
 ;
 ;==============================================================================
+(provide 'mu4e-setup)
 
 (setq load-path (append '("~/Work/mu/mu4e") load-path))
 
