@@ -30,7 +30,7 @@
 (require 'gnus-article-treat-patch)
 (require 'mu4e-setup)
 (require 'gud)
-:
+
 ;; Packages from the world
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
