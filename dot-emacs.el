@@ -61,8 +61,10 @@
 (require 'php-mode)
 (require 'gnus-article-treat-patch)
 (require 'clang-format)
-(require 'magit-gh-pulls)
-(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+(with-eval-after-load 'magit (require 'forge))
+;; (require 'forge)
+;; (require 'magit-gh-pulls)
+;; (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 ;; Recent files mode
 (recentf-mode 1)
@@ -147,7 +149,7 @@
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(package-selected-packages
-   '(rust-mode markdown-mode flymake-json mu4e-views go-guru magit-gh-pulls gh meson-mode realgud-lldb checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere magit adoc-mode))
+   '(## forge rust-mode markdown-mode flymake-json mu4e-views go-guru magit-gh-pulls gh meson-mode realgud-lldb checkbox git php-mode xcscope ag go-mode imenus imenu-list imenu-anywhere magit adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
