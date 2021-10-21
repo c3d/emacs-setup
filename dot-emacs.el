@@ -1,26 +1,5 @@
 ; Christophe de Dinechin's Emacs Initializations
 
-;; Options Menu Settings
-;; =====================
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(if (< emacs-major-version 27) (package-initialize))
-
-(cond
- ((and (string-match "XEmacs" emacs-version)
-       (boundp 'emacs-major-version)
-       (or (and
-            (= emacs-major-version 19)
-            (>= emacs-minor-version 14))
-           (= emacs-major-version 20))
-       (fboundp 'load-options-file))
-  (load-options-file "~/.xemacs-options")
-  (load-file "~/.xemacs")))
-;; ============================
-;; End of Options Menu Settings
 
 (setq load-path (append '("~/.emacs-lisp"
                           "~/.emacs-lisp/lisp/progmodes"
