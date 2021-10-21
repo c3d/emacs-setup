@@ -33,9 +33,9 @@
 
 ;; Packages from the world
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
-(package-install 'use-package)
+(require 'use-package)
 (require 'use-package-ensure)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (setq use-package-always-ensure t)
 
 (use-package auto-package-update
