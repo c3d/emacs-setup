@@ -18,7 +18,6 @@
                         load-path))
 (setq exec-path (append exec-path (list "/opt/local/bin" "/usr/local/bin" "~/.cargo/bin")))
 
-
 ;; My personal stuff (in .emacs-lisp, not fetched from packages)
 (require 'cdefs)
 (require 'keydefs)
@@ -174,7 +173,7 @@
 (run-at-time nil (* 5 60) 'recentf-save-list)
 
 ;;(set-background-color "Wheat")
-(set-background-color "#E0E0FE")
+(set-background-color "LightSkyBlue")
 (set-foreground-color "Black")
 (set-cursor-color "Orange")
 (set-mouse-color "Blue")
