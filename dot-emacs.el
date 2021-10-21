@@ -1,6 +1,5 @@
 ; Christophe de Dinechin's Emacs Initializations
 
-
 (setq load-path (append '("~/.emacs-lisp"
                           "~/.emacs-lisp/lisp/progmodes"
                           "/usr/local/share/clang"
@@ -13,14 +12,6 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
-
-;; Default setenv
-(defun setenv-compiled ()
-  (interactive)
-  (setenv "BUILDENV" "macosx-clang")
-  (setenv "PATH" (concat "/opt/local/bin:" (getenv "PATH") ":/usr/local/bin:/usr/local/opt/qt/bin"))
-  (setenv "PKG_CONFIG_PATH" "/usr/local/share/pkgconfig:/usr/local/lib/pkgconfig"))
-(setenv-compiled)
 
 (require 'cdefs)
 (require 'keydefs)
