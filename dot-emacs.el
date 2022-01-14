@@ -64,7 +64,7 @@
 (use-package mu4e-views)
 (use-package php-mode)
 (use-package projectile)
-(use-package realgud-lldb)
+; (use-package realgud-lldb)
 (use-package rust-mode)
 (use-package vc)
 (use-package xcscope)
