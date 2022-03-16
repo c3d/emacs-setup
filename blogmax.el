@@ -186,9 +186,6 @@
 
 (provide 'blogmax)
 
-;; Use the Common Lisp library
-(require 'cl)
-
 ;; Use the ange-ftp library to upload files
 (if (featurep 'efs-autoloads)
     (require 'efs)
@@ -387,7 +384,7 @@
      (lambda (x) (car (read-from-string x))) integerp)
     ("shortcuts-file" *weblog-shortcuts-file*)
     ("month-index" *weblog-generate-month-index-p*
-     (lambda (x) (equalp x "true")))
+     (lambda (x) (cl-equalp x "true")))
     ("pl-macro-text" *weblog-pl-macro-text*)
     ("bugmenot-auto-list" *weblog-bugmenot-auto-list*
      weblog-parse-space-separated-string))
@@ -445,7 +442,7 @@ Return the full path or nil if not found."
 
 (defun weblog-file-in-base-dir (file-name)
   (let ((dir (file-name-directory file-name)))
-    (equalp dir (weblog-seek-base-dir dir))))
+    (cl-equalp dir (weblog-seek-base-dir dir))))
 
 (defun weblog-parse-parameter-file (&optional dir)
   "Parse the *weblog-init-file* in directory DIR.
@@ -521,7 +518,7 @@ File defaults to *weblog-shortcuts-file*"
 		 (concat "Error parsing " *weblog-shortcuts-file*)
 		 buf))))
     (setq *weblog-shortcuts*
-	  (mapcar '(lambda (x) (cons (downcase (car x)) (cdr x))) s))
+	  (mapcar #'(lambda (x) (cons (downcase (car x)) (cdr x))) s))
     (let ((elt (assoc *weblog-directory* *weblog-shortcuts-alist*)))
       (if elt
 	  (setf (cdr elt) *weblog-shortcuts*)
@@ -897,7 +894,7 @@ If FILE-NAME is non-nil, upload that file and don't generate html."
   (let ((file (or file-name (buffer-file-name))))
     (weblog-with-init-params file
       (let* ((buf (current-buffer))
-             (textp (equalp (file-name-extension file) "txt"))
+             (textp (cl-equalp (file-name-extension file) "txt"))
              (html-name (if textp
                             (concat (file-name-sans-extension file) ".html")
                           file))
@@ -2233,12 +2230,12 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
          (ext (file-name-extension file))
          (dir (file-name-directory file))
          (weblog-dir nil))
-    (when (and (equalp ext "txt")
+    (when (and (cl-equalp ext "txt")
                (setq weblog-dir (weblog-seek-base-dir dir))
                (let ((len (length weblog-dir)))
                  (and (>= (length dir) len)
-                      (equalp weblog-dir
-                              (substring dir 0 len)))))
+                      (cl-equalp weblog-dir
+                                 (substring dir 0 len)))))
       (weblog-mode))))
 
 (defun weblog-yank-link ()
@@ -2290,9 +2287,9 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
   (backward-char 32))
 
 ;; Set weblog-file on file open if appropriate
-(macrolet ((add-find-file-hook (x)
+(cl-macrolet ((add-find-file-hook (x)
 	     (if (get 'find-file-hooks 'byte-obsolete-variable)
-		 `(pushnew ,x find-file-hook)
+		 `(cl-pushnew ,x find-file-hook)
 	       ;; find-file-hooks is obsolete as of Emacs 22.1
 	       `(pushnew ,x find-file-hooks))))
   (add-find-file-hook 'weblog-set-buffer-mode))
