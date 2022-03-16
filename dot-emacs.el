@@ -32,8 +32,9 @@
 (require 'gud)
 
 ;; Packages from the world
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (require 'use-package)
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
@@ -59,7 +60,10 @@
 	      ("C-p". company-select-previous)
 	      ("M-<". company-select-first)
 	      ("M->". company-select-last)))
-(use-package flycheck :ensure)
+(use-package flycheck
+  :ensure
+  :config
+  (setq flycheck-standard-error-navigation nil))
 (use-package flymake-json)
 (use-package forge :after magit)
 (use-package forge)
@@ -92,7 +96,7 @@
 (use-package magit)
 (use-package markdown-mode)
 (use-package meson-mode)
-(use-package mu4e-views)
+;; (use-package mu4e-views)
 (use-package php-mode)
 (use-package projectile)
 ; (use-package realgud-lldb)
@@ -126,7 +130,9 @@
   (when buffer-file-name
     (setq-local buffer-save-without-query t)))
 (use-package vc)
-(use-package xcscope)
+(use-package xcscope
+  :config
+  (cscope-setup))
 (use-package yasnippet
   :ensure
   :config
@@ -167,7 +173,7 @@
 
 ;; Make shell scripts executable
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Colorize compilation buffers
 (defun colorize-compilation-buffer ()
@@ -197,7 +203,7 @@
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(package-selected-packages
-   '(lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
+   '(flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
