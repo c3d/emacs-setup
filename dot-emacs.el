@@ -46,7 +46,7 @@
 ;  (auto-package-update-maybe))
 (use-package adoc-mode)
 (use-package ag)
-(use-package ansi-color)
+; (use-package ansi-color)
 (use-package checkbox)
 (use-package clang-format :ensure nil) ;; This one comes from LLVM, see above
 (use-package company
@@ -73,7 +73,7 @@
 (use-package imenu-anywhere)
 (use-package imenu-list)
 (use-package imenus)
-(use-package jka-compr)
+                                        ; (use-package jka-compr)
 (use-package lsp-mode
   :ensure
   :commands lsp
@@ -121,7 +121,7 @@
   ;; comment to disable rustfmt on save
   (setq rustic-format-on-save t))
 
-(use-package vc)
+; (use-package vc)
 (use-package xcscope
   :config
   (cscope-setup))
@@ -161,7 +161,8 @@
               "compressing" "gzip" ("-c" "-q")
               "uncompressing" "gzip" ("-c" "-q" "-d")
               t nil "\037\213"])
-(jka-compr-install)
+(auto-compression-mode 1)
+; (jka-compr-install)
 
 ;; Make shell scripts executable
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
@@ -173,6 +174,7 @@
   (ansi-color-apply-on-region (point-min) (point-max))
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;; Projectile mode
 (projectile-mode +1)
@@ -195,7 +197,7 @@
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(package-selected-packages
-   '(flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
+   '(clang-format flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
