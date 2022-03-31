@@ -46,6 +46,7 @@
 ;  (auto-package-update-maybe))
 (use-package adoc-mode)
 (use-package ag)
+(use-package auto-complete)
 ; (use-package ansi-color)
 (use-package checkbox)
 (use-package clang-format :ensure nil) ;; This one comes from LLVM, see above
