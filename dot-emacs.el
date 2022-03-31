@@ -47,6 +47,7 @@
 (use-package adoc-mode)
 (use-package ag)
 (use-package auto-complete)
+(use-package ac-clang)
 ; (use-package ansi-color)
 (use-package checkbox)
 (use-package clang-format :ensure nil) ;; This one comes from LLVM, see above
@@ -198,7 +199,7 @@
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(package-selected-packages
-   '(clang-format flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
+   '(ac-clang clang-format flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
