@@ -6,6 +6,7 @@
 (provide 'mu4e-setup)
 
 (setq load-path (append '("/usr/local/share/emacs/site-lisp/mu4e"
+                          "/usr/local/share/emacs/site-lisp/mu/mu4e"
                           "~/Work/mu/mu4e")
                         load-path))
 
