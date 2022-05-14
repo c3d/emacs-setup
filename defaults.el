@@ -52,6 +52,11 @@
   (pop-mark)
   (exchange-point-and-mark))
 
+;;; org-mode
+(setq org-todo-keywords
+      '((sequence "TODO" "POST" "REVIEW" "|" "DONE" "ACK" "NACK" "HOLD")))
+
+;;; Fortran mode? When did I ever use that?
 (setq fortran-continuation-char ?|)
 (setq fortran-do-indent 2)
 (setq fortran-if-indent 2)
