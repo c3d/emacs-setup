@@ -153,45 +153,37 @@
 (add-hook 'mu4e-compose-pre-hook 'mu4e-set-account)
 
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "Hot topics"
-              :query "subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:virtiofs"
-              :key ?h))
+             '(:name  "Hot topics"
+                      :query "subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:virtiofs"
+                      :key ?h))
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "Hot topics (unread)"
-              :query "(subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:virtiofs) AND flag:unread"
-              :key ?H))
+             '(:name  "Hot topics (unread)"
+                      :query "(subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:virtiofs) AND flag:unread"
+                      :key ?H))
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "kvm"
-              :query "list:kvm*"
-              :key ?k))
+             '(:name  "kvm"
+                      :query "list:kvm*"
+                      :key ?k))
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "qemu"
-              :query "list:qemu*"
-              :key ?q))
+             '(:name  "qemu"
+                      :query "list:qemu*"
+                      :key ?q))
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "Flagged"
-              :query "flag:flagged"
-              :key ?f))
+             '(:name  "Flagged"
+                      :query "flag:flagged"
+                      :key ?f))
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "Virt"
-              :query "list:virt*"
-              :key ?v))
+             '(:name  "Virt"
+                      :query "list:virt*"
+                      :key ?v))
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "Work"
-              :query "list:virt* OR list:qemu* OR list:kvm* OR list:kata* OR subject:kata OR subject:qemu OR maildir:/Act"
-              :key ?o))
+             '(:name  "Work"
+                      :query "list:virt* OR list:qemu* OR list:kvm* OR list:kata* OR subject:kata OR subject:qemu OR maildir:/Act"
+                      :key ?o))
 (add-to-list 'mu4e-bookmarks
-             (make-mu4e-bookmark
-              :name  "Just me"
-              :query "(to:dinechin@redhat.com OR to:cdupontd@redhat.com OR to:christophe@dinechin.org) AND NOT flag:draft"
-              :key ?j))
+             '(:name  "Just me"
+                      :query "(to:dinechin@redhat.com OR to:cdupontd@redhat.com OR to:christophe@dinechin.org) AND NOT flag:draft"
+                      :key ?j))
 
 (setq mu4e-view-fields '(:from :to  :cc :subject :flags :date :maildir
                                :mailing-list :tags :attachments
