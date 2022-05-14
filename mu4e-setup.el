@@ -92,7 +92,7 @@
 ;; Various common settings
 (setq
  mu4e-change-filenames-when-moving   t  ;; Required with mbsync
- mu4e-update-interval           42100   ;; Roughly twice a day
+ mu4e-update-interval           420     ;; Roughly every seven minutes
  mu4e-headers-skip-duplicates   t       ;; Don't record duplicates
  mu4e-index-cleanup             t       ;; Do full cleanup check
  mu4e-index-lazy-check          nil     ;; Don't rely on directory timestamps
