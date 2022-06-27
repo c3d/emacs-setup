@@ -23,6 +23,24 @@
        message-citation-line-function 'message-insert-formatted-citation-line)
 
 
+;; Fancy stuff (new)
+(setq mu4e-use-fancy-chars t
+      mu4e-headers-draft-mark '("D" . "💈")
+      mu4e-headers-flagged-mark '("F" . "📍")
+      mu4e-headers-new-mark '("N" . "🔥")
+      mu4e-headers-passed-mark '("P" . "❯")
+      mu4e-headers-replied-mark '("R" . "❮")
+      mu4e-headers-seen-mark '("S" . "✅")
+      mu4e-headers-trashed-mark '("T" . "💀")
+      mu4e-headers-attach-mark '("a" . "📎")
+      mu4e-headers-encrypted-mark '("x" . "🔒")
+      mu4e-headers-signed-mark '("s" . "🔑")
+      mu4e-headers-unread-mark '("u" . "✏🥸")
+      mu4e-headers-list-mark '("s" . "🔈")
+      mu4e-headers-personal-mark '("p" . "👨")
+      mu4e-headers-calendar-mark '("c" . "📅"))
+
+
 ;; shortcuts
 (setq mu4e-maildir-shortcuts
     '( ("/gmail/Inbox"                  . ?I)
@@ -92,7 +110,7 @@
 ;; Various common settings
 (setq
  mu4e-change-filenames-when-moving   t  ;; Required with mbsync
- mu4e-update-interval           420     ;; Roughly every seven minutes
+ mu4e-update-interval           421     ;; Roughly seven minutes
  mu4e-headers-skip-duplicates   t       ;; Don't record duplicates
  mu4e-index-cleanup             t       ;; Do full cleanup check
  mu4e-index-lazy-check          nil     ;; Don't rely on directory timestamps
