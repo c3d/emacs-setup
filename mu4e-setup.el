@@ -68,7 +68,7 @@
    mu4e-compose-signature
     (concat
       "Cheers,\n"
-      "Christophe de Dinechin (IRC c3d)\n"))
+      "Christophe de Dinechin (https://c3d.github.io)\n"))
 
 ;; show images
 (setq mu4e-show-images t)
