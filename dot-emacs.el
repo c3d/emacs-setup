@@ -12,6 +12,7 @@
 (setq load-path (append '("~/.emacs-lisp"
                           "~/.emacs-lisp/lisp/progmodes"
                           "/usr/local/share/clang"
+                          "/opt/homebrew/share/clang"
                           "/opt/local/libexec/llvm-10/libexec/clang-format"
                           "/usr/local/share/emacs/site-lisp")
                         load-path))
