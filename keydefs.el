@@ -36,7 +36,7 @@
 
 (define-key ctl-o-map "\C-a" 'insert-acked-by)
 (define-key ctl-o-map "\C-b" 'lldb)
-(define-key ctl-o-map "\C-c" 'clang-format)
+(define-key ctl-o-map "\C-c" 'clang-format-buffer)
 (define-key ctl-o-map "\C-f" 'fill-region)
 (define-key ctl-o-map "\C-g" 'projectile-ag)
 (define-key ctl-o-map "\C-l" 'font-lock-fontify-buffer)
@@ -90,6 +90,7 @@
 (global-set-key [(meta f4)] 'previous-error)
 
 (global-set-key [f5] 'rotate-yank-pointer)
+(global-set-key [(control f5)] 'clang-format-buffer)
 
 (global-set-key [f6] 'switch-to-buffer)
 
