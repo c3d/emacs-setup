@@ -68,7 +68,8 @@
    mu4e-compose-signature
     (concat
       "Cheers,\n"
-      "Christophe de Dinechin (https://c3d.github.io)\n"))
+      "Christophe de Dinechin (https://c3d.github.io)\n"
+      "Theory of Incomplete Measurements (https://c3d.github.io/TIM)"))
 
 ;; show images
 (setq mu4e-show-images t)
