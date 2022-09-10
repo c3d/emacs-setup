@@ -157,6 +157,7 @@
 (setq-default fill-column 80)
 (setq c-default-style "ddd")
 (setq gnus-default-nntp-server "news.gmane.io")
+(setq gnus-select-method '(nntp "news.gmane.io"))
 
 ;; Check auto-compression, add files that are really gzipped
 (add-to-list 'jka-compr-compression-info-list
