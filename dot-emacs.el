@@ -16,7 +16,7 @@
                           "/opt/local/libexec/llvm-10/libexec/clang-format"
                           "/usr/local/share/emacs/site-lisp")
                         load-path))
-(setq exec-path (append exec-path (list "/opt/local/bin" "/usr/local/bin")))
+(setq exec-path (append exec-path (list "/opt/local/bin" "/usr/local/bin" "~/.cargo/bin")))
 
 
 ;; My personal stuff (in .emacs-lisp, not fetched from packages)
@@ -109,6 +109,7 @@
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
+              ("C-o c" . rustic-compile)
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c C-c a" . lsp-execute-code-action)
               ("C-c C-c r" . lsp-rename)
@@ -120,7 +121,6 @@
   ;; (setq lsp-eldoc-hook nil)
   ;; (setq lsp-enable-symbol-highlighting nil)
   ;; (setq lsp-signature-auto-activate nil)
-
   ;; comment to disable rustfmt on save
   (setq rustic-format-on-save t))
 
