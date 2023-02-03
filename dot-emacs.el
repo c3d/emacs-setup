@@ -177,6 +177,7 @@
 ;; Make shell scripts executable
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-change-major-mode-hook 'display-fill-column-indicator-mode)
 
 ;; Colorize compilation buffers
 (defun colorize-compilation-buffer ()
