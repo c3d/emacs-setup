@@ -5,7 +5,8 @@
 ;==============================================================================
 (provide 'mu4e-setup)
 
-(setq load-path (append '("/usr/local/share/emacs/site-lisp/mu4e"
+(setq load-path (append '("/opt/homebrew/share/emacs/site-lisp/mu4e"
+                          "/usr/local/share/emacs/site-lisp/mu4e"
                           "/usr/local/share/emacs/site-lisp/mu/mu4e"
                           "~/Work/mu/mu4e")
                         load-path))
@@ -16,7 +17,7 @@
 (setq mu4e-drafts-folder "/gmail/Drafts")
 (setq mu4e-sent-folder   "/gmail/Sent")
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
-;; (setq mu4e-sent-messages-behavior 'delete)
+(setq mu4e-sent-messages-behavior 'delete)
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "mbsync -V all")
 (setq  message-citation-line-format "On %Y-%m-%d at %R %Z, %f wrote..."
@@ -35,7 +36,7 @@
       mu4e-headers-attach-mark '("a" . "📎")
       mu4e-headers-encrypted-mark '("x" . "🔒")
       mu4e-headers-signed-mark '("s" . "🔑")
-      mu4e-headers-unread-mark '("u" . "✏🥸")
+      mu4e-headers-unread-mark '("u" . "🥸")
       mu4e-headers-list-mark '("s" . "🔈")
       mu4e-headers-personal-mark '("p" . "👨")
       mu4e-headers-calendar-mark '("c" . "📅"))
