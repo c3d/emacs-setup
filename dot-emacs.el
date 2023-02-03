@@ -160,6 +160,11 @@
 (setq gnus-default-nntp-server "news.gmane.io")
 (setq gnus-select-method '(nntp "news.gmane.io"))
 
+;; Put all auto-save files in a single point, this blocks stray drafts
+;; from being left behind by mu4e, see https://emacs.stackexchange.com/questions/21723/how-can-i-delete-mu4e-drafts-on-successfully-sending-the-mail
+(setq auto-save-file-name-transforms
+  `((".*" "~/.emacs.d/auto-save/" t)))
+
 ;; Check auto-compression, add files that are really gzipped
 (add-to-list 'jka-compr-compression-info-list
              ["\\.duf\\'"
