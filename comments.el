@@ -69,7 +69,7 @@
     (insert-repeated (1+ (length comment-start)) 0 "" " " "")
     (insert-repeated comment-width comment-width "" "*" comment-end)))
 
-(defcustom ddd-project-name "Tao3D"
+(defcustom ddd-project-name "DB48X"
   "Name of the project for header commands")
 
 (defun insert-xlr-header ()
@@ -98,7 +98,7 @@
   (insert-comment
    (format "  (C) %s Christophe de Dinechin <christophe@dinechin.org>"
            (calendar-extract-year (calendar-current-date))))
-  (insert-comment "  This software is licensed under the GNU General Public License v3")
+  (insert-comment "  This software is licensed under the terms outlined in LICENSE.txt")
   (insert-comment-line "*")
   (insert-gpl-header)
   (insert-comment-line "*"))
@@ -110,18 +110,11 @@
   (insert-comment "")
   (insert-comment (concat "  " ddd-project-name
                           " is free software: you can redistribute it and/or modify"))
-  (insert-comment "  it under the terms of the GNU General Public License as published by")
-  (insert-comment "  the Free Software Foundation, either version 3 of the License, or")
-  (insert-comment "  (at your option) any later version.")
+  (insert-comment "  it under the terms outlined in the LICENSE.txt file")
   (insert-comment "")
   (insert-comment (concat "  " ddd-project-name " is distributed in the hope that it will be useful,"))
   (insert-comment "  but WITHOUT ANY WARRANTY; without even the implied warranty of")
-  (insert-comment "  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the")
-  (insert-comment "  GNU General Public License for more details.")
-  (insert-comment "")
-  (insert-comment "  You should have received a copy of the GNU General Public License")
-  (insert-comment (concat "  along with " ddd-project-name ".  "
-                          "If not, see <https://www.gnu.org/licenses/>.")))
+  (insert-comment "  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."))
 
 
 ;; Commenting current region line by line
