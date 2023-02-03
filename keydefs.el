@@ -31,6 +31,7 @@
 (define-key ctl-o-map "r" 'insert-reviewed-by)
 (define-key ctl-o-map "s" 'shell)
 (define-key ctl-o-map "t" 'tabify)
+(define-key ctl-o-map "u" 'rustic-compile)
 (define-key ctl-o-map "y" 'rotate-yank-pointer)
 (define-key ctl-o-map "\\" 'c-backslash-region)
 
