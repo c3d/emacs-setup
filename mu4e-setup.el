@@ -175,12 +175,12 @@
 
 (add-to-list 'mu4e-bookmarks
              '(:name  "Hot topics"
-                      :query "subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:virtiofs"
-                      :key ?h))
+                      :query "NOT flag:trashed AND (subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:TDX OR subject:virtiofs)"
+                      :key ?H))
 (add-to-list 'mu4e-bookmarks
              '(:name  "Hot topics (unread)"
-                      :query "(subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:virtiofs) AND flag:unread"
-                      :key ?H))
+                      :query "NOT flag:trashed AND flag:unread AND (subject:kata OR list:rh-kata-dev OR list:kata-dev OR subject:TDX OR subject:SEV OR subject:TDX OR subject:virtiofs)"
+                      :key ?h))
 (add-to-list 'mu4e-bookmarks
              '(:name  "kvm"
                       :query "list:kvm*"
