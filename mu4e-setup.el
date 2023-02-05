@@ -212,6 +212,7 @@
       mu4e-headers-fields '((:flags         . 8)
                             (:human-date    . 12)
                                         ;(:acctshortname . 4)
+                            (:maildir       . 15)
                             (:mailing-list  . 15)
                             (:from-or-to    . 25)
                                         ;(:size          . 6)
