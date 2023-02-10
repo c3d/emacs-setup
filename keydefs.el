@@ -104,6 +104,8 @@
 (global-set-key [f10] 'gud-next) ; f10
 (global-set-key [(control f10)] 'gud-step) ; f10
 
+(global-unset-key [f11]) ; Reserved for 'lsp-command-map)
+
 (global-set-key [f12] 'dabbrev-expand)
 (global-set-key [(control f12)] 'cycle-colors)
 (global-set-key [(meta f12)] 'cycle-colors)

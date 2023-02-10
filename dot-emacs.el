@@ -81,6 +81,8 @@
 (use-package lsp-mode
   :ensure
   :commands lsp
+  :init
+  (setq lsp-keymap-prefix "<f11>")
   :custom
   ;; what to use when checking on-save. "check" is default, I prefer clippy
   (lsp-rust-analyzer-cargo-watch-command "clippy")
@@ -177,7 +179,7 @@
 
 ;; Make shell scripts executable
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'after-change-major-mode-hook 'display-fill-column-indicator-mode)
 
 ;; Colorize compilation buffers
@@ -188,7 +190,8 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-
+;; Enable "which-key" mode by default
+(which-key-mode)
 
 ;; Projectile mode
 (projectile-mode +1)
