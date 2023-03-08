@@ -219,6 +219,8 @@
 ;; LSP for C and C++
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+(add-hook 'rust-mode-hook 'lsp)
+(add-hook 'go-mode-hook 'lsp)
 
 
 
