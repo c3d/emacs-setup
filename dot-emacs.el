@@ -99,10 +99,11 @@
 (use-package lsp-mode
   :ensure
   :commands lsp
-  :init
-  (setq lsp-keymap-prefix "<f11>")
+  :bind-keymap
+  ("<f11>" . lsp-command-map)
   :custom
   ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-keymap-prefix "<f11>")
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-eldoc-render-all t)
   (lsp-idle-delay 0.6)
