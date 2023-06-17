@@ -70,6 +70,7 @@
     (concat
       "Cheers,\n"
       "Christophe de Dinechin (https://c3d.github.io)\n"
+      "Freedom Covenant (https://github.com/c3d/freedom-covenant)\n"
       "Theory of Incomplete Measurements (https://c3d.github.io/TIM)"))
 
 ;; show images
