@@ -223,6 +223,8 @@
 (add-hook 'rust-mode-hook 'lsp)
 (add-hook 'go-mode-hook 'lsp)
 
+;; Workaround for https://emacs.stackexchange.com/questions/74289/emacs-28-2-error-in-macos-ventura-image-type-invalid-image-type-svg
+(setq image-types (cons 'svg image-types))
 
 
 ;==============================================================================
