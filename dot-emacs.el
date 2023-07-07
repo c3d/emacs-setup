@@ -146,7 +146,7 @@
               ("C-c C-c Q" . lsp-workspace-shutdown)
               ("C-c C-c s" . lsp-rust-analyzer-status))
   :config
-  (setq rustic-compile-command "make -C ~/Work/ociplex all")
+  (setq rustic-compile-command "rust-build")
   ;; uncomment for less flashiness
   ;; (setq lsp-eldoc-hook nil)
   ;; (setq lsp-enable-symbol-highlighting nil)
