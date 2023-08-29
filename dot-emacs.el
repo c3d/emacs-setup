@@ -118,7 +118,14 @@
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
-(use-package magit)
+(use-package magit
+  :config
+  ;; Add shortcuts to edit labels, assignee, milestone and state
+  (define-key magit-mode-map (kbd "C-c C-l") #'forge-edit-topic-labels)
+  (define-key magit-mode-map (kbd "C-c C-k") #'forge-edit-topic-state)
+  (define-key magit-mode-map (kbd "C-c C-m") #'forge-edit-topic-milestone)
+  (define-key magit-mode-map (kbd "C-c C-a") #'forge-edit-topic-assignees)
+)
 (use-package markdown-mode)
 (use-package meson-mode)
 ;; (use-package mu4e-views)
