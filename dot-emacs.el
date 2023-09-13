@@ -118,6 +118,7 @@
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
+
 (use-package magit
   :config
   ;; Add shortcuts to edit labels, assignee, milestone and state
@@ -267,5 +268,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(lsp-ui-sideline-symbol ((t (:foreground "gray20"))))
+ '(lsp-ui-sideline-global ((t (:background "gray80")))))
 (put 'magit-diff-edit-hunk-commit 'disabled nil)
