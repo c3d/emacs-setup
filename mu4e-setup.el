@@ -44,8 +44,10 @@
 
 ;; shortcuts
 (setq mu4e-maildir-shortcuts
-    '( ("/gmail/Inbox"                  . ?I)
-       ("/gmail/Sent"                   . ?S)
+    '( ("/blackbox/Inbox"               . ?I)
+       ("/blackbox/Sent"                . ?S)
+       ("/gmail/Inbox"                  . ?G)
+       ("/gmail/Sent"                   . ?W)
        ("/rh/Act"                       . ?a)
        ("/rh/Act/Act Now"               . ?n)
        ("/rh/Act/Keep"                  . ?k)
@@ -133,7 +135,17 @@
       smtpmail-smtp-service 587)
 
 (defvar mu4e-account-alist
-  '(("gmail"
+  '(("blackbox"
+     (mu4e-sent-folder "/blackbox/Sent")
+     (mu4e-drafts-folder "/blackbox/Drafts")
+     (user-mail-address "christophe@dinechin.org")
+     (smtpmail-smtp-user "ddd")
+     (smtpmail-default-smtp-server "mail.dinechin.org")
+     (smtpmail-smtp-server "mail.dinechin.org")
+     (smtpmail-stream-type starttls)
+     (smtpmail-smtp-service 587)
+     (mu4e-sent-messages-behavior 'sent))
+    ("gmail"
      (mu4e-sent-folder "/gmail/Sent")
      (mu4e-drafts-folder "/gmail/Drafts")
      (user-mail-address "christophe@dinechin.org")
@@ -147,8 +159,8 @@
      (mu4e-drafts-folder "/rh/Drafts")
      (user-mail-address "dinechin@redhat.com")
      (smtpmail-smtp-user "cdupontd")
-     (smtpmail-default-smtp-server "smtp.redhat.com")
-     (smtpmail-smtp-server "smtp.redhat.com")
+     (smtpmail-default-smtp-server "smtp.corp.redhat.com")
+     (smtpmail-smtp-server "smtp.corp.redhat.com")
      (smtpmail-stream-type starttls)
      (smtpmail-smtp-service 587))))
 
