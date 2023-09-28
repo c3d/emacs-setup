@@ -248,6 +248,7 @@
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
+ '(epg-pinentry-mode 'loopback)
  '(package-selected-packages
    '(sqlite sqlite3 dap-mode which-key protobuf-mode ement ac-clang clang-format flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
  '(safe-local-variable-values
