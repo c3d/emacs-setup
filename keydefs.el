@@ -12,6 +12,9 @@
        (define-key global-map "\C-o" 'ctl-o-prefix)
        (define-key global-map "\M-o" 'ctl-o-prefix))
 
+(defvar gud-global-map (make-sparse-keymap)
+  "Keymap for compatibility with dap-mode")
+
 
 (define-key ctl-o-map "a" 'align)
 (define-key ctl-o-map "b" 'gdb)
