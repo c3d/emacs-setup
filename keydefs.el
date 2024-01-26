@@ -14,7 +14,7 @@
 
 (defvar gud-global-map (make-sparse-keymap)
   "Keymap for compatibility with dap-mode")
-
+(defun toggle-read-only() ())
 
 (define-key ctl-o-map "a" 'align)
 (define-key ctl-o-map "b" 'gdb)
@@ -42,6 +42,7 @@
 (define-key ctl-o-map "\C-b" 'lldb)
 (define-key ctl-o-map "\C-c" 'clang-format-buffer)
 (define-key ctl-o-map "\C-f" 'fill-region)
+(define-key ctl-o-map "\M-f" 'auto-fill-mode)
 (define-key ctl-o-map "\C-g" 'projectile-ag)
 (define-key ctl-o-map "\C-l" 'font-lock-fontify-buffer)
 (define-key ctl-o-map "\C-n" 'next-error)
@@ -113,6 +114,7 @@
 (global-set-key [(control f12)] 'cycle-colors)
 (global-set-key [(meta f12)] 'cycle-colors)
 
+(global-set-key [f13] 'db48x-update-test)
 
 (defun insert-acked-by ()
   "Insert Acked-by message"
@@ -148,3 +150,6 @@
 (defun ansi-color-region ()
   (interactive)
   (ansi-color-apply-on-region (point) (mark)))
+
+(defalias 'db48x-update-test
+   (kmacro "C-s . e x p e c t ( \" RET C-x o C-s g o t SPC [ RET C-SPC C-s ] <left> M-w C-x o C-y C-SPC C-s \" <left> C-w C-e"))
