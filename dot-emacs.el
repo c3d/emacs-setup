@@ -105,8 +105,8 @@
   ;; what to use when checking on-save. "check" is default, I prefer clippy
   (lsp-keymap-prefix "<f11>")
   (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all t)
-  (lsp-idle-delay 0.6)
+  (lsp-eldoc-render-all nil)
+  (lsp-idle-delay 1.5)
   (lsp-rust-analyzer-server-display-inlay-hints t)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
@@ -270,3 +270,4 @@
  '(lsp-ui-sideline-global ((t (:background "gray80"))))
  '(lsp-ui-sideline-symbol ((t (:foreground "gray20")))))
 (put 'magit-diff-edit-hunk-commit 'disabled nil)
+(put 'scroll-left 'disabled nil)
