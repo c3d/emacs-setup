@@ -3,7 +3,7 @@
 ;; Custom configuration
 (set-variable 'manygrep-topdir "/Users/ddd/Work/spice/spice-gtk")
 (set-variable 'grep-command "grep -in ")
-(set-variable 'compile-command "cd ~/Work/xl && make")
+(set-variable 'compile-command "cd ~/Work/calc/db48x && make -j sim all dm32-all && sim/db48x.app/Contents/macOS/db48x")
 (set-variable 'mac-pass-option-to-system nil)
 (setq default-frame-font "fontset-mac")
 

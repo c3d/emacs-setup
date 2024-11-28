@@ -100,6 +100,8 @@
 (global-set-key [f6] 'switch-to-buffer)
 
 (global-set-key [f7] 'call-last-kbd-macro)
+(global-set-key [(control f7)] 'db48x-update-test)
+(global-set-key [(control shift f7)] 'db48x-update-editor-test)
 
 (global-set-key [f8] 'dabbrev-expand)
 
@@ -115,6 +117,7 @@
 (global-set-key [(meta f12)] 'cycle-colors)
 
 (global-set-key [f13] 'db48x-update-test)
+(global-set-key [(control f13)] 'db48x-update-editor-test)
 
 (defun insert-acked-by ()
   "Insert Acked-by message"
@@ -152,4 +155,7 @@
   (ansi-color-apply-on-region (point) (mark)))
 
 (defalias 'db48x-update-test
-   (kmacro "C-s . e x p e c t ( \" RET C-x o C-s g o t SPC [ RET C-SPC C-s ] <left> M-w C-x o C-y C-SPC C-s \" <left> C-w C-e"))
+   (kmacro "C-s . e x p e c t ( \" RET C-x o C-s g o t SPC [ RET C-SPC C-s ] SPC i n s t e a d C-r M-w C-x o C-y C-SPC C-s \" <left> C-w C-e"))
+
+(defalias 'db48x-update-editor-test
+   (kmacro "C-s . e d i t o r ( \" RET C-x o C-s g o t RET C-s [ RET C-SPC C-s ] C-q C-j <left> <left> M-w C-x o C-y C-SPC C-s \" <left> C-w C-e"))

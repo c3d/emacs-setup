@@ -91,7 +91,7 @@
   "List of words declaring types in XL mode")
 
 (defvar xl-module-declarators
-  '("module" "record" "include")
+  '("module" "record" "include" "interface")
   "List of words declaring modules or records in XL mode")
 
 (defvar xl-outdent-words
