@@ -91,6 +91,7 @@
 		("\\.tbl$"  . c++-mode)
                 ("\\.adb"   . ada-mode)
                 ("\\.ads"   . ada-mode)
+                ("\\.mm"    . objc-mode)
                 ("\\.pro$"  . wave-mode)
                 ("\\.fs$"  . c-mode)
                 ("\\.vs$"  . c-mode)
