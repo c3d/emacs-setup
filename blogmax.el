@@ -432,7 +432,7 @@ Return the name of that directory or nil if not found."
 (defun weblog-seek-file (directory file-name)
   "Find FILE-NAME in DIRECTORY or one of its parents.
 Return the full path or nil if not found."
-  (loop
+  (while t
    (let ((file (concat directory file-name)))
      (when (file-exists-p file)
        (return (expand-file-name file)))
@@ -463,7 +463,7 @@ Return t if the file was found and all the parameters were OK.
 Return nil if the file was not found.
 Error if an unknown parameter is found in the file."
   (goto-char (point-min))
-  (loop
+  (while t
    (let* ((point (point))
           (line-end (or (line-end-position) (point-max))))
      (unless (eql (char-after) *weblog-sharp-sign-char*)
@@ -565,7 +565,7 @@ File defaults to *weblog-shortcuts-file*"
     (unless leave-escapes (weblog-remove-escapes))))
 
 (defun search-forward-non-escaped (string &optional limit)
-  (loop
+  (while t
    (let  ((pos (search-forward string limit t)))
      (if (null pos) (return nil))
      (setq pos (- pos (length string)))
@@ -583,7 +583,7 @@ replace only the string."
          (end-len (if (null end-delim) 0 (length end-delim)))
          (total-len (+ start-len end-len))
          pos end)
-    (loop
+    (while t
      (setq pos (search-forward-non-escaped start-delim nil))
      (if (null pos) (return cnt))
      (if (null end-delim)
@@ -802,7 +802,7 @@ all text files."
 (defun weblog-remove-escapes ()
   "Remove escape characters (\"\\\") from the current buffer"
   (goto-char (point-min))
-  (loop
+  (while t
    (let ((pos (search-forward *weblog-escape-string* nil t)))
      (if (null pos) (return))
      (backward-delete-char 1)
@@ -1150,7 +1150,7 @@ Delete the entire tag if NEW-TEXT is null."
         (len (length text))
         (from-len (length from))
         end)
-    (loop
+    (while t
      (setq end (search from text :start2 pos))
      (unless end
        (return (if (eq pos 0) text (concat res (substring text pos)))))
@@ -1187,7 +1187,7 @@ Return (text (url1 . text1) (url2 . text2) ...)"
            (start-tag-len (length start-tag))
            (end-tag "</a>")
            (end-tag-len (length end-tag)))
-      (loop
+      (while t
        (let ((tag-pos (search-forward start-tag end t)))
          (when (null tag-pos)
            (setq res (concat res (weblog-neuter-tags (buffer-substring pos end))))
@@ -1271,7 +1271,7 @@ Upload it to the FTP server."
         (set-buffer html-buf)
         (weblog-make-urls-absolute)
         (goto-char (point-min))
-        (loop
+        (while t
          (let* ((start (point))
                 (end (search-forward "<p>" nil t))
                 (real-end (if end (- end 3) (point-max)))
@@ -1324,7 +1324,7 @@ Upload it to the FTP server."
   (let ((s 0)
         (space (elt " " 0))
         e res)
-    (loop
+    (while t
      (setq e (position space x :start s))
      (when (null e)
        (setq e (length x))
@@ -1337,7 +1337,7 @@ Upload it to the FTP server."
     (save-excursion
       (let ((s 0) e domain)
         (goto-char (point-min))
-        (loop
+        (while t
          (setq s (search-forward "<a href=\"http://" nil t))
          (if (null s) (return))
          (setq e (search-forward "/" nil t))
@@ -2084,7 +2084,7 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
         (set-buffer buf)
         (insert title)
         (insert "\n<ul>\n")
-        (loop
+        (while t
          (set-buffer day-buf)
          (let* ((pos (search-forward "<a href=" nil t))
                 (start-pos pos))
@@ -2092,7 +2092,7 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
            (when (and blank-line-pos (< blank-line-pos pos))
              (let (next-blank-pos)
                (goto-char blank-line-pos)
-               (loop
+               (while t
                 (setq next-blank-pos (search-forward "\n\n" nil t))
                 (when (or (null next-blank-pos) (> next-blank-pos pos))
                   (goto-char pos)
@@ -2205,7 +2205,7 @@ Just insert 'text' if the 'file' does not exist in directory 'dir'"
       (goto-char 0)
       (let ((from (car pair))
             (to (cadr pair)))
-        (loop
+        (while t
          (unless (search-forward from nil t) (return))
          (replace-match to t t))))))
 
