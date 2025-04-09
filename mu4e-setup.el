@@ -5,14 +5,15 @@
 ;==============================================================================
 (provide 'mu4e-setup)
 
-(setq load-path (append '("/opt/homebrew/share/emacs/site-lisp/mu/mu4e"
+(setq load-path (append '("/opt/homebrew/share/emacs/site-lisp/mu4e"
+                          "/opt/homebrew/share/emacs/site-lisp/mu/mu4e"
                           "/usr/local/share/emacs/site-lisp/mu4e"
                           "/usr/local/share/emacs/site-lisp/mu/mu4e")
                         load-path))
 
 (require 'mu4e)
 (require 'mu4e-actions)
-(setq mu4e-maildir "~/Maildir/")
+(setq mu4e-maildir "/Volumes/FourTea/Maildir/")
 (setq mu4e-drafts-folder "/gmail/Drafts")
 (setq mu4e-sent-folder   "/gmail/Sent")
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
@@ -137,7 +138,7 @@
   '(("blackbox"
      (mu4e-sent-folder "/blackbox/Sent")
      (mu4e-drafts-folder "/blackbox/Drafts")
-     (user-mail-address "christophe@dinechin.org")
+     (user-mail-address "christophe@mail.dinechin.org")
      (smtpmail-smtp-user "ddd")
      (smtpmail-default-smtp-server "mail.dinechin.org")
      (smtpmail-smtp-server "mail.dinechin.org")
@@ -148,10 +149,11 @@
      (mu4e-sent-folder "/gmail/Sent")
      (mu4e-drafts-folder "/gmail/Drafts")
      (user-mail-address "christophe@dinechin.org")
-     (smtpmail-smtp-user "christophe.de.dinechin")
+     (smtpmail-smtp-user "christophe.de.dinechin@gmail.com")
      (smtpmail-default-smtp-server "smtp.gmail.com")
      (smtpmail-smtp-server "smtp.gmail.com")
      (smtpmail-stream-type starttls)
+     (smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg"))
      (smtpmail-smtp-service 587))
     ("rh"
      (mu4e-sent-folder "/rh/Sent")
