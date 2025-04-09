@@ -102,6 +102,7 @@
 (global-set-key [f7] 'call-last-kbd-macro)
 (global-set-key [(control f7)] 'db48x-update-test)
 (global-set-key [(control shift f7)] 'db48x-update-editor-test)
+(global-set-key [(shift f7)] 'db48x-update-equation)
 
 (global-set-key [f8] 'dabbrev-expand)
 
@@ -118,6 +119,7 @@
 
 (global-set-key [f13] 'db48x-update-test)
 (global-set-key [(control f13)] 'db48x-update-editor-test)
+(global-set-key [(shift f13)] 'db48x-update-equation)
 
 (defun insert-acked-by ()
   "Insert Acked-by message"
@@ -159,3 +161,7 @@
 
 (defalias 'db48x-update-editor-test
    (kmacro "C-s . e d i t o r ( \" RET C-x o C-s g o t RET C-s [ RET C-SPC C-s ] C-q C-j <left> <left> M-w C-x o C-y C-SPC C-s \" <left> C-w C-e"))
+
+
+(defalias 'db48x-update-equation
+   (kmacro "C-x o C-s g o t SPC [ <return> C-SPC C-s ] SPC i n s t e a d <return> <left> <left> <left> <left> <left> <left> <left> <left> <left> <escape> w C-x o C-s e x p e c t i n g SPC <return> C-y C-k"))
