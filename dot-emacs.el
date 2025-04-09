@@ -27,7 +27,7 @@
 (require 'ia64-asm-mode)
 (require 'xl)
 (require 'defaults)
-(require 'blogmax)
+;; (require 'blogmax)
 (require 'gnus-article-treat-patch)
 (require 'mu4e-setup)
 (require 'gud)
