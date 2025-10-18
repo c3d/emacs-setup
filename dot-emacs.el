@@ -12,6 +12,7 @@
 (setq load-path (append '("~/.emacs-lisp"
                           "~/.emacs-lisp/lisp/progmodes"
                           "/usr/local/share/clang"
+                          "/usr/share/clang"
                           "/opt/homebrew/share/clang"
                           "/opt/local/libexec/llvm-10/libexec/clang-format"
                           "/usr/local/share/emacs/site-lisp")
@@ -29,7 +30,7 @@
 (require 'defaults)
 ;; (require 'blogmax)
 (require 'gnus-article-treat-patch)
-(require 'mu4e-setup)
+; (require 'mu4e-setup)
 (require 'gud)
 
 ;; Packages from the world
@@ -248,7 +249,7 @@
  '(blink-cursor-mode nil)
  '(epg-pinentry-mode 'loopback)
  '(package-selected-packages
-   '(sqlite sqlite3 dap-mode which-key protobuf-mode ement ac-clang clang-format flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
+   '(realgud sqlite sqlite3 dap-mode which-key protobuf-mode ement ac-clang clang-format flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
  '(safe-local-variable-values
    '((c-indent-level . 8)
      (whitespace-check-buffer-indent)
