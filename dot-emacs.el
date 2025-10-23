@@ -7,6 +7,12 @@
 (set-variable 'mac-pass-option-to-system nil)
 (setq default-frame-font "fontset-mac")
 
+;; Clipboard integration - save system clipboard to kill ring before killing
+;; This allows C-y to paste clipboard content even after C-k
+(setq select-enable-clipboard t)
+(setq select-enable-primary t)
+(setq save-interprogram-paste-before-kill t)
+
 
 ;; Where to look for Emacs code
 (setq load-path (append '("~/.emacs-lisp"
