@@ -54,7 +54,20 @@
 
 ;;; org-mode
 (setq org-todo-keywords
-      '((sequence "TODO" "POST" "REVIEW" "|" "DONE" "ACK" "NACK" "HOLD")))
+      '((sequence "TODO(t)" "WORK(w)" "NEXT(x)" "LOOK(l)" "MORE(m)"
+                  "POST(p)" "TEST(s)" "HOLD(h)"
+                  "|" "DONE(y)" "NACK(n)")))
+(setq org-todo-keyword-faces
+      '(("TODO" . "#800")
+        ("WORK" . "#C00")
+        ("NEXT" . "#C80")
+        ("LOOK" . "#C85")
+        ("MORE" . "#C55")
+        ("POST" . "#008")
+        ("TEST" . "#005")
+        ("HOLD" . "#444")
+        ("DONE" . "#050")
+        ("NACK" . "#222")))
 
 ;;; Fortran mode? When did I ever use that?
 (setq fortran-continuation-char ?|)
