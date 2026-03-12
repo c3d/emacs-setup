@@ -273,3 +273,36 @@
  '(lsp-ui-sideline-symbol ((t (:foreground "gray20")))))
 (put 'magit-diff-edit-hunk-commit 'disabled nil)
 (put 'scroll-left 'disabled nil)
+
+
+;==============================================================================
+;
+;  TRAMP Configuration - force /bin/sh for hosts with heavy zsh configs
+;
+;==============================================================================
+(require 'tramp)
+
+;; For crazypad and turbo-fedora: use /bin/sh instead of zsh
+(connection-local-set-profile-variables
+ 'tramp-connection-local-sh-profile
+ '((tramp-remote-shell . "/bin/sh")
+   (tramp-remote-shell-login . ("-l"))
+   (tramp-remote-shell-args . ("-c"))))
+
+(connection-local-set-profiles
+ '(:application tramp :machine "crazypad")
+ 'tramp-connection-local-sh-profile)
+
+(connection-local-set-profiles
+ '(:application tramp :machine "turbo-fedora")
+ 'tramp-connection-local-sh-profile)
+
+(connection-local-set-profiles
+ '(:application tramp :machine "fedora")
+ 'tramp-connection-local-sh-profile)
+
+;; Optional speedups:
+(setq vc-ignore-dir-regexp
+      (format "\\(%s\\)\\|\\(%s\\)"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
