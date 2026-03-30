@@ -180,7 +180,7 @@
 (run-at-time nil (* 5 60) 'recentf-save-list)
 
 ;;(set-background-color "Wheat")
-(set-background-color "#E0EEC0")
+(set-background-color "#C0DEF0")
 (set-foreground-color "Black")
 (set-cursor-color "Orange")
 (set-mouse-color "Blue")
