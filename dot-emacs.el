@@ -250,18 +250,17 @@
  '(blink-cursor-mode nil)
  '(epg-pinentry-mode 'loopback)
  '(package-selected-packages
-   '(realgud sqlite sqlite3 dap-mode which-key protobuf-mode ement ac-clang clang-format flycheck-rust flycheck-ycmd lsp-ui lsp-mode rustic unfill realgud-lldb xcscope use-package rust-mode projectile php-mode mu4e-views meson-mode magit-popup magit-gh-pulls imenus imenu-list imenu-anywhere graphql go-guru git forge flymake-json checkbox async ag adoc-mode))
+   '(ac-clang adoc-mode ag async checkbox clang-format dap-mode ement flycheck-rust
+              flycheck-ycmd flymake-json forge git go-guru graphql
+              imenu-anywhere imenu-list imenus lsp-mode lsp-ui lua-mode
+              magit-gh-pulls magit-popup meson-mode mu4e-views php-mode
+              projectile protobuf-mode qt-pro-mode realgud-lldb rg rust-mode
+              rustic sqlite sqlite3 unfill use-package which-key xcscope))
  '(safe-local-variable-values
-   '((c-indent-level . 8)
-     (whitespace-check-buffer-indent)
-     (eval ignore-errors
-           (require 'whitespace)
-           (whitespace-mode 1))
-     (whitespace-line-column . 79)
-     (whitespace-style face indentation)
-     (eval progn
-           (c-set-offset 'case-label '0)
-           (c-set-offset 'innamespace '0)
+   '((c-indent-level . 8) (whitespace-check-buffer-indent)
+     (eval ignore-errors (require 'whitespace) (whitespace-mode 1))
+     (whitespace-line-column . 79) (whitespace-style face indentation)
+     (eval progn (c-set-offset 'case-label '0) (c-set-offset 'innamespace '0)
            (c-set-offset 'inline-open '0))))
  '(tool-bar-mode nil))
 (custom-set-faces
